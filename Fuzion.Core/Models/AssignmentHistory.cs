@@ -7,6 +7,6 @@ namespace Fuzion.Core.Models
         public int Id { get; set; }
         public int Body { get; set; }
 
-        public List<Hardware> Hardware { get; set; }
+        public Hardware Hardware { get; set; }
     }
 }
