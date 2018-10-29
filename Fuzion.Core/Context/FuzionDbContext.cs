@@ -1,4 +1,6 @@
-﻿using Fuzion.Core.ModelConfigurations;
+﻿using System;
+using System.Linq;
+using Fuzion.Core.ModelConfigurations;
 using Fuzion.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +29,29 @@ namespace Fuzion.Core.Context
             modelBuilder.ApplyConfiguration(new PurposeConfiguration());
             modelBuilder.ApplyConfiguration(new NoteConfiguration());
             modelBuilder.ApplyConfiguration(new AssignmentHistoryConfiguration());
+        }
+
+        public override int SaveChanges()
+        {
+            AddAuditInfo();
+            return base.SaveChanges();
+        }
+
+        private void AddAuditInfo()
+        {
+            var entries = ChangeTracker.Entries().Where(x =>
+                x.Entity is BaseModel
+                && (x.State == EntityState.Added || x.State == EntityState.Modified));
+            foreach (var entry in entries)
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    ((BaseModel)entry.Entity).CreatedOn = DateTime.UtcNow;
+                    ((BaseModel)entry.Entity).CreatedBy = "Testing Account";
+                }
+                ((BaseModel)entry.Entity).LastModifiedOn = DateTime.UtcNow;
+                ((BaseModel) entry.Entity).LastModifiedBy = "Testing Account";
+            }
         }
     }
 }
