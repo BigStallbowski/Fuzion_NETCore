@@ -1,4 +1,6 @@
 using Fuzion.UI.Core.Context;
+using Fuzion.UI.Persistence;
+using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +36,7 @@ namespace Fuzion.UI
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<FuzionDbSeeder>();
         }
 
