@@ -9,7 +9,5 @@ namespace Fuzion.UI.Persistence.Interfaces
         IHardwareTypeRepository HardwareTypes { get; set; }
         INoteRepository Notes { get; set; }
         IAssignmentHistoryRepository AssignmentHistory { get; set; }
-
-        Task<int> Complete();
     }
 }

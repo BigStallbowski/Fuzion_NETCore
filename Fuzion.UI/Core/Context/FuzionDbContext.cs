@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Fuzion.UI.Core.ModelConfigurations;
 using Fuzion.UI.Core.Models;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,14 @@ namespace Fuzion.UI.Core.Context
         {
             AddAuditInfo();
             return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, 
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            AddAuditInfo();
+            var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            return result;
         }
 
         private void AddAuditInfo()

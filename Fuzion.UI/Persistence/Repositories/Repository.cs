@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Fuzion.UI.Core.Context;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fuzion.UI.Persistence.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContext _ctx;
 
@@ -17,24 +18,34 @@ namespace Fuzion.UI.Persistence.Repositories
             _ctx = ctx;
         }
 
-        public async Task<TEntity> Get(int id)
+        public async Task<IEnumerable<T>> FindAllAsync()
         {
-            return await _ctx.Set<TEntity>().FindAsync(id);
+            return await _ctx.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _ctx.Set<TEntity>().ToListAsync();
+            return await _ctx.Set<T>().Where(expression).ToListAsync();
         }
 
-        public void Add(TEntity entity)
+        public void Create(T entity)
         {
-            _ctx.Set<TEntity>().Add(entity);
+            _ctx.Set<T>().Add(entity);
         }
 
-        public void Remove(TEntity entity)
+        public void Update(T entity)
         {
-            _ctx.Set<TEntity>().Remove(entity);
+            _ctx.Set<T>().Update(entity);
+        }
+
+        public void Delete(T entity)
+        {
+            _ctx.Set<T>().Remove(entity);
+        }
+
+        public async Task SaveAsync()
+        {
+            await _ctx.SaveChangesAsync();
         }
     }
 }

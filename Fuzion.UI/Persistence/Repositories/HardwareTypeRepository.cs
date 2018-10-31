@@ -1,7 +1,9 @@
-﻿using Fuzion.UI.Core.Context;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fuzion.UI.Core.Context;
 using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Fuzion.UI.Persistence.Repositories
 {
@@ -11,6 +13,35 @@ namespace Fuzion.UI.Persistence.Repositories
         {
         }
 
-        public FuzionDbContext FuzionContext => _ctx as FuzionDbContext;
+        public async Task<IEnumerable<HardwareType>> GetAllHardwareTypesAsync()
+        {
+            var hardwareTypes = await FindAllAsync();
+            return hardwareTypes.OrderBy(x => x.Name);
+        }
+
+        public async Task<HardwareType> GetHardwareTypeByIdAsync(int id)
+        {
+            var hardwareType = await FindByConditionAsync(x => x.Id.Equals(id));
+            return hardwareType.DefaultIfEmpty(new HardwareType())
+                .FirstOrDefault();
+        }
+
+        public async Task CreateHardwareTypeAsync(HardwareType hardwareType)
+        {
+            Create(hardwareType);
+            await SaveAsync();
+        }
+
+        public async Task UpdateHardwareTypeAsync(HardwareType hardwareType)
+        {
+            Update(hardwareType);
+            await SaveAsync();
+        }
+
+        public async Task DeleteHardwareAsync(HardwareType hardwareType)
+        {
+            Delete(hardwareType);
+            await SaveAsync();
+        }
     }
 }

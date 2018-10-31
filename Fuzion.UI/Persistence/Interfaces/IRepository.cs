@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Fuzion.UI.Persistence.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<T>
     {
-        Task<TEntity> Get(int id);
-        Task<IEnumerable<TEntity>> GetAll();
-        void Add(TEntity entity);
-        void Remove(TEntity entity);
+        Task<IEnumerable<T>> FindAllAsync();
+        Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        Task SaveAsync();
     }
 }

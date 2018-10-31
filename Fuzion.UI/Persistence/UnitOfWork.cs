@@ -23,11 +23,6 @@ namespace Fuzion.UI.Persistence
             AssignmentHistory = new AssignmentRepository(_ctx);
         }
 
-        public async Task<int> Complete()
-        {
-            return await _ctx.SaveChangesAsync();
-        }
-
         public void Dispose()
         {
             _ctx.Dispose();
