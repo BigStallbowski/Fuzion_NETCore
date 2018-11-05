@@ -1,13 +1,18 @@
 using Fuzion.UI.Core.Context;
+using Fuzion.UI.Pages;
 using Fuzion.UI.Persistence;
+using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Fuzion.UI
 {
@@ -41,7 +46,7 @@ namespace Fuzion.UI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, FuzionDbSeeder fuzionDbSeeder)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, FuzionDbSeeder fuzionDbSeeder)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +60,7 @@ namespace Fuzion.UI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.ConfigureExceptionHandler(logger);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
