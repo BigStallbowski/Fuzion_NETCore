@@ -4,7 +4,6 @@ namespace Fuzion.UI.Core.Models
 {
     public class Hardware : BaseModel
     {
-        public int Id { get; set; }
         public string AssetNumber { get; set; }
         public string SerialNumber { get; set; }
         public byte IsAssigned { get; set; }

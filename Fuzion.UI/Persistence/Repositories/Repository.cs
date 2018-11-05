@@ -20,12 +20,12 @@ namespace Fuzion.UI.Persistence.Repositories
 
         public async Task<IEnumerable<T>> FindAllAsync()
         {
-            return await _ctx.Set<T>().ToListAsync();
+            return await _ctx.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
         {
-            return await _ctx.Set<T>().Where(expression).ToListAsync();
+            return await _ctx.Set<T>().Where(expression).AsNoTracking().ToListAsync();
         }
 
         public void Create(T entity)
@@ -35,7 +35,9 @@ namespace Fuzion.UI.Persistence.Repositories
 
         public void Update(T entity)
         {
-            _ctx.Set<T>().Update(entity);
+
+            _ctx.Entry(entity).State = EntityState.Detached;
+            _ctx.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(T entity)

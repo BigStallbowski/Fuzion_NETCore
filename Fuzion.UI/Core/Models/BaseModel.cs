@@ -2,8 +2,9 @@
 
 namespace Fuzion.UI.Core.Models
 {
-    public class BaseModel
+    public class BaseModel: IEntity
     {
+        public int Id { get; set; }
         public string CreatedBy { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
