@@ -16,6 +16,10 @@ namespace Fuzion.UI.Core.ModelConfigurations
 
             builder.HasIndex(m => m.Name)
                 .IsUnique();
+
+            builder.HasOne(model => model.Manufacturer)
+                .WithMany(manufacturer => manufacturer.Models)
+                .IsRequired();
         }
     }
 }
