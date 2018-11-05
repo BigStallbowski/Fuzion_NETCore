@@ -2,6 +2,7 @@
 using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Interfaces;
 using Fuzion.UI.Persistence.Extensions;
+using Fuzion.UI.Persistence.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fuzion.UI.Apis
@@ -37,18 +38,15 @@ namespace Fuzion.UI.Apis
         }
 
         [HttpPost]
+        [ModelValidation]
         public async Task<ActionResult> CreateHardwareType([FromBody] HardwareType hardwareType)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model");
-            }
-
             await _uow.HardwareTypes.CreateHardwareTypeAsync(hardwareType);
             return CreatedAtRoute("GetHardwareTypeById", new { id = hardwareType.Id }, hardwareType);
         }
 
         [HttpPut("{id}")]
+        [ModelValidation]
         public async Task<ActionResult> UpdateHardwareType([FromBody] HardwareType hardwareTypeUpdate)
         {
             if (hardwareTypeUpdate.IsObjectNull())
@@ -60,11 +58,6 @@ namespace Fuzion.UI.Apis
             if (hardwareType.IsEmptyObject())
             {
                 return NotFound();
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model");
             }
 
             await _uow.HardwareTypes.UpdateHardwareTypeAsync(hardwareTypeUpdate);

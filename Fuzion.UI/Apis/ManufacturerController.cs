@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
+using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,18 +39,15 @@ namespace Fuzion.UI.Apis
         }
 
         [HttpPost]
+        [ModelValidation]
         public async Task<ActionResult> CreateManufacturer([FromBody] Manufacturer manufacturer)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model");
-            }
-
             await _uow.Manufacturers.CreateManufacturerAsync(manufacturer);
             return CreatedAtRoute("GetManufacturerById", new {id = manufacturer.Id}, manufacturer);
         }
 
         [HttpPut("{id}")]
+        [ModelValidation]
         public async Task<ActionResult> UpdateManufacturer([FromBody] Manufacturer manufacturerUpdate)
         {
             if (manufacturerUpdate.IsObjectNull())
@@ -61,11 +59,6 @@ namespace Fuzion.UI.Apis
             if (manufacturer.IsEmptyObject())
             {
                 return NotFound();
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid model");
             }
 
             await _uow.Manufacturers.UpdateManufacturerAsync(manufacturerUpdate);

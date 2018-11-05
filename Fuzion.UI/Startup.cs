@@ -1,12 +1,10 @@
 using Fuzion.UI.Core.Context;
-using Fuzion.UI.Pages;
 using Fuzion.UI.Persistence;
 using Fuzion.UI.Persistence.Extensions;
+using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +39,7 @@ namespace Fuzion.UI
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.AddScoped<ModelValidationAttribute>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<FuzionDbSeeder>();
         }
