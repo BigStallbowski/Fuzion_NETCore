@@ -38,7 +38,7 @@ namespace Fuzion.UI.Persistence.Repositories
             await SaveAsync();
         }
 
-        public async Task DeleteHardwareAsync(HardwareType hardwareType)
+        public async Task DeleteHardwareTypeAsync(HardwareType hardwareType)
         {
             Delete(hardwareType);
             await SaveAsync();

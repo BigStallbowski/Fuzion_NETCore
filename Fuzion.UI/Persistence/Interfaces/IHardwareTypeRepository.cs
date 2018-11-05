@@ -10,6 +10,6 @@ namespace Fuzion.UI.Persistence.Interfaces
         Task<HardwareType> GetHardwareTypeByIdAsync(int id);
         Task CreateHardwareTypeAsync(HardwareType hardwareType);
         Task UpdateHardwareTypeAsync(HardwareType hardwareType);
-        Task DeleteHardwareAsync(HardwareType hardwareType);
+        Task DeleteHardwareTypeAsync(HardwareType hardwareType);
     }
 }
