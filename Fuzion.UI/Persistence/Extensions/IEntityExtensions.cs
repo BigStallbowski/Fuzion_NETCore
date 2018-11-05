@@ -11,7 +11,7 @@ namespace Fuzion.UI.Persistence.Extensions
 
         public static bool IsEmptyObject(this IEntity entity)
         {
-            return entity.Id.Equals(null);
+            return entity.Id.Equals(0);
         }
     }
 }
