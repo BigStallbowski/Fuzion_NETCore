@@ -14,6 +14,9 @@ namespace Fuzion.UI.Core.ModelConfigurations
                 .HasMaxLength(5)
                 .IsRequired();
 
+            builder.HasIndex(h => h.AssetNumber)
+                .IsUnique();
+
             builder.Property(h => h.SerialNumber)
                 .HasMaxLength(25)
                 .IsRequired();

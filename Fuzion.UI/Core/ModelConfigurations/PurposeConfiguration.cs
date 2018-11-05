@@ -13,6 +13,9 @@ namespace Fuzion.UI.Core.ModelConfigurations
             builder.Property(p => p.Name)
                 .HasMaxLength(55)
                 .IsRequired();
+
+            builder.HasIndex(p => p.Name)
+                .IsUnique();
         }
     }
 }
