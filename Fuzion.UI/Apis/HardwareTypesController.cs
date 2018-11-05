@@ -27,6 +27,12 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> HardwareTypes(int id)
         {
             var hardwareType = await _uow.HardwareTypes.GetHardwareTypeByIdAsync(id);
+
+            if (hardwareType.IsEmptyObject())
+            {
+                return NotFound();
+            }
+
             return Ok(hardwareType);
         }
 
@@ -43,25 +49,30 @@ namespace Fuzion.UI.Apis
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateHardwareType([FromBody] HardwareType hardwareType)
+        public async Task<ActionResult> UpdateHardwareType([FromBody] HardwareType hardwareTypeUpdate)
         {
-            if (hardwareType.IsObjectNull())
+            if (hardwareTypeUpdate.IsObjectNull())
             {
                 return BadRequest("Object is null");
             }
 
-            var hardwareTypeToUpdate = await _uow.HardwareTypes.GetHardwareTypeByIdAsync(hardwareType.Id);
-            if (hardwareTypeToUpdate.IsEmptyObject())
+            var hardwareType = await _uow.HardwareTypes.GetHardwareTypeByIdAsync(hardwareTypeUpdate.Id);
+            if (hardwareType.IsEmptyObject())
             {
                 return NotFound();
             }
 
-            await _uow.HardwareTypes.UpdateHardwareTypeAsync(hardwareType);
-            return CreatedAtRoute("GetHardwareTypeById", new { id = hardwareType.Id }, hardwareType);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid model");
+            }
+
+            await _uow.HardwareTypes.UpdateHardwareTypeAsync(hardwareTypeUpdate);
+            return CreatedAtRoute("GetHardwareTypeById", new { id = hardwareTypeUpdate.Id }, hardwareTypeUpdate);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteHardwareTask(int id)
+        public async Task<ActionResult> DeleteHardware(int id)
         {
             var hardwareType = await _uow.HardwareTypes.GetHardwareTypeByIdAsync(id);
             if (hardwareType.IsEmptyObject())
