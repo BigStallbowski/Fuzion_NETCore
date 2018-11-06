@@ -22,8 +22,7 @@ namespace Fuzion.UI.Persistence.Repositories
         public async Task<Manufacturer> GetManufacturerByIdAsync(int id)
         {
             var manufacturer = await FindByConditionAsync(x => x.Id.Equals(id));
-            return manufacturer.DefaultIfEmpty(new Manufacturer())
-                .FirstOrDefault();
+            return manufacturer.FirstOrDefault();
         }
 
         public async Task CreateManufacturerAsync(Manufacturer manufacturer)

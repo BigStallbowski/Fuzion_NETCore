@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Fuzion.UI.Core.Context;
 using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fuzion.UI.Persistence.Repositories
 {
@@ -23,28 +23,25 @@ namespace Fuzion.UI.Persistence.Repositories
         public async Task<OS> GetOSByIdAsync(int id)
         {
             var operatingSystem = await FindByConditionAsync(x => x.Id.Equals(id));
-            return operatingSystem.DefaultIfEmpty(new OS())
-                .FirstOrDefault();
-        }
-
-        public async Task<IEnumerable<OS>> GetOSByHardwareTypeId(int id)
-        {
-            throw new System.NotImplementedException();
+            return operatingSystem.FirstOrDefault();
         }
 
         public async Task CreateOSAsync(OS os)
         {
-            throw new System.NotImplementedException();
+            Create(os);
+            await SaveAsync();
         }
 
         public async Task UpdateOSAsync(OS os)
         {
-            throw new System.NotImplementedException();
+            Update(os);
+            await SaveAsync();
         }
 
         public async Task DeleteOSAsync(OS os)
         {
-            throw new System.NotImplementedException();
+            _ctx.Remove(os);
+            await SaveAsync();
         }
     }
 }

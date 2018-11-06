@@ -74,7 +74,6 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.HardwareTypes.DeleteHardwareTypeAsync(hardwareType);
-
             return NoContent();
         }
     }

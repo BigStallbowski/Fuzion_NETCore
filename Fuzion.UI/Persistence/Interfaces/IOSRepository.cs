@@ -8,7 +8,6 @@ namespace Fuzion.UI.Persistence.Interfaces
     {
         Task<IEnumerable<OS>> GetAllOSAsync();
         Task<OS> GetOSByIdAsync(int id);
-        Task<IEnumerable<OS>> GetOSByHardwareTypeId(int id);
         Task CreateOSAsync(OS os);
         Task UpdateOSAsync(OS os);
         Task DeleteOSAsync(OS os);
