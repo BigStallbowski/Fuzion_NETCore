@@ -19,6 +19,7 @@ namespace Fuzion.UI.Core.ModelConfigurations
 
             builder.HasOne(model => model.Manufacturer)
                 .WithMany(manufacturer => manufacturer.Models)
+                .HasForeignKey(model => model.ManufacturerId)
                 .IsRequired();
         }
     }

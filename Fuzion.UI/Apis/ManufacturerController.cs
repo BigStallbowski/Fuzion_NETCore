@@ -21,7 +21,6 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> Manufacturers()
         {
             var manufacturers = await _uow.Manufacturers.GetAllManufacturersAsync();
-
             return Ok(manufacturers);
         }
 

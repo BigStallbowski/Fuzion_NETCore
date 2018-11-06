@@ -8,6 +8,7 @@ namespace Fuzion.UI.Persistence.Interfaces
         IHardwareRepository Hardware { get; set; }
         IHardwareTypeRepository HardwareTypes { get; set; }
         IManufacturerRepository Manufacturers { get; set; }
+        IModelRepository Models { get; set; }
         INoteRepository Notes { get; set; }
         IAssignmentHistoryRepository AssignmentHistory { get; set; }
     }

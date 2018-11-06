@@ -12,6 +12,7 @@ namespace Fuzion.UI.Persistence
         public IHardwareRepository Hardware { get; set; }
         public IHardwareTypeRepository HardwareTypes { get; set; }
         public IManufacturerRepository Manufacturers { get; set; }
+        public IModelRepository Models { get; set; }
         public INoteRepository Notes { get; set; }
         public IAssignmentHistoryRepository AssignmentHistory { get; set; }
 
@@ -21,6 +22,7 @@ namespace Fuzion.UI.Persistence
             Hardware = new HardwareRepository(_ctx);
             HardwareTypes = new HardwareTypeRepository(_ctx);
             Manufacturers = new ManufacturerRepository(_ctx);
+            Models = new ModelRepository(_ctx);
             Notes = new NoteRepository(_ctx);
             AssignmentHistory = new AssignmentRepository(_ctx);
         }
