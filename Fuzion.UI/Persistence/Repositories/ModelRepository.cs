@@ -22,8 +22,7 @@ namespace Fuzion.UI.Persistence.Repositories
         public async Task<Model> GetModelByIdAsync(int id)
         {
             var model = await FindByConditionAsync(x => x.Id.Equals(id));
-            return model.DefaultIfEmpty(new Model())
-                .FirstOrDefault();
+            return model.FirstOrDefault();
         }
 
         public async Task<IEnumerable<Model>> GetModelsByManufacturerId(int id)

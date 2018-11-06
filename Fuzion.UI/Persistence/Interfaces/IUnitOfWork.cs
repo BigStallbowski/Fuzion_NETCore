@@ -10,6 +10,7 @@ namespace Fuzion.UI.Persistence.Interfaces
         IModelRepository Models { get; set; }
         INoteRepository Notes { get; set; }
         IOSRepository OS { get; set; }
+        IPurposeRepository Purposes { get; set; }
         IAssignmentHistoryRepository AssignmentHistory { get; set; }
     }
 }

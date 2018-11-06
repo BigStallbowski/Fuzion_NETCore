@@ -22,8 +22,7 @@ namespace Fuzion.UI.Persistence.Repositories
         public async Task<HardwareType> GetHardwareTypeByIdAsync(int id)
         {
             var hardwareType = await FindByConditionAsync(x => x.Id.Equals(id));
-            return hardwareType.DefaultIfEmpty(new HardwareType())
-                .FirstOrDefault();
+            return hardwareType.FirstOrDefault();
         }
 
         public async Task CreateHardwareTypeAsync(HardwareType hardwareType)
