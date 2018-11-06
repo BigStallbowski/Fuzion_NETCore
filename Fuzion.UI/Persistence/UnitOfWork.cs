@@ -14,6 +14,7 @@ namespace Fuzion.UI.Persistence
         public IManufacturerRepository Manufacturers { get; set; }
         public IModelRepository Models { get; set; }
         public INoteRepository Notes { get; set; }
+        public IOSRepository OS { get; set; }
         public IAssignmentHistoryRepository AssignmentHistory { get; set; }
 
         public UnitOfWork(FuzionDbContext ctx)
@@ -24,6 +25,7 @@ namespace Fuzion.UI.Persistence
             Manufacturers = new ManufacturerRepository(_ctx);
             Models = new ModelRepository(_ctx);
             Notes = new NoteRepository(_ctx);
+            OS = new OSRepository(_ctx);
             AssignmentHistory = new AssignmentRepository(_ctx);
         }
 

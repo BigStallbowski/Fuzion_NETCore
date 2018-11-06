@@ -31,6 +31,7 @@ namespace Fuzion.UI.Core.Context
             modelBuilder.ApplyConfiguration(new PurposeConfiguration());
             modelBuilder.ApplyConfiguration(new NoteConfiguration());
             modelBuilder.ApplyConfiguration(new AssignmentHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new HardwareTypeOSConfiguration());
         }
 
         public override int SaveChanges()

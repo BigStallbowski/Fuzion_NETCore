@@ -6,6 +6,8 @@ namespace Fuzion.UI.Core.Models
     {
         public string Name { get; set; }
 
+        public List<HardwareTypeOS> OperatingSystems { get; set; }
+
         public List<Hardware> Hardware { get; set; }
     }
 }

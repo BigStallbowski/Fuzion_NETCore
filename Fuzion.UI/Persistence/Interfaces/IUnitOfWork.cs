@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Fuzion.UI.Persistence.Interfaces
 {
@@ -10,6 +9,7 @@ namespace Fuzion.UI.Persistence.Interfaces
         IManufacturerRepository Manufacturers { get; set; }
         IModelRepository Models { get; set; }
         INoteRepository Notes { get; set; }
+        IOSRepository OS { get; set; }
         IAssignmentHistoryRepository AssignmentHistory { get; set; }
     }
 }
