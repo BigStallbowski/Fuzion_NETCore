@@ -65,7 +65,7 @@ namespace Fuzion.UI.Apis
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteHardware(int id)
+        public async Task<ActionResult> DeleteHardwareType(int id)
         {
             var hardwareType = await _uow.HardwareTypes.GetHardwareTypeByIdAsync(id);
             if (hardwareType.IsEmptyObject())

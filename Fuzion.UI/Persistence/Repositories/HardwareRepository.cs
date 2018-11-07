@@ -16,7 +16,7 @@ namespace Fuzion.UI.Persistence.Repositories
 
         public FuzionDbContext FuzionContext => _ctx as FuzionDbContext;
 
-        public async Task<IEnumerable<Hardware>> GetAllWithDetails()
+        public async Task<IEnumerable<Hardware>> GetAllHardwareWithDetails()
         {
             return await FuzionContext.Hardware
                 .Include(h => h.HardwareType)
@@ -26,6 +26,54 @@ namespace Fuzion.UI.Persistence.Repositories
                 .Include(h => h.Purpose)
                 .OrderBy(h => h.AssetNumber)
                 .ToListAsync();
+        }
+
+        public async Task<Hardware> GetHardwareById(int id)
+        {
+            var hardware = await FindByConditionAsync(x => x.Id.Equals(id));
+            return hardware.FirstOrDefault();
+        }
+
+        public async Task CreateHardware(Hardware hardware)
+        {
+            Create(hardware);
+            await SaveAsync();
+        }
+
+        public async Task UpdateHardware(Hardware hardware)
+        {
+            Update(hardware);
+            await SaveAsync();
+        }
+
+        public async Task DeleteHardware(Hardware hardware)
+        {
+            Delete(hardware);
+            await SaveAsync();
+        }
+
+        public async Task AssignHardware(Hardware hardware)
+        {
+            hardware.IsAssigned = 1;
+            Update(hardware);
+            await SaveAsync();
+        }
+
+        public async Task UnassignHardware(Hardware hardware)
+        {
+            hardware.IsAssigned = 0;
+            hardware.AssignedTo = null;
+            Update(hardware);
+            await SaveAsync();
+        }
+
+        public async Task RetireHardware(Hardware hardware)
+        {
+            hardware.IsAssigned = 0;
+            hardware.AssignedTo = null;
+            hardware.IsRetired = 1;
+            Update(hardware);
+            await SaveAsync();
         }
     }
 }
