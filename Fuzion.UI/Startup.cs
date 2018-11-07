@@ -59,7 +59,7 @@ namespace Fuzion.UI
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.ConfigureExceptionHandler(logger);
+            //app.ConfigureExceptionHandler(logger);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

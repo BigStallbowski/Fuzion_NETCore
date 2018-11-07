@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fuzion.UI.Apis
 {
+    [Route("api/purposes")]
     public class PurposeController : Controller
     {
         private readonly IUnitOfWork _uow;
