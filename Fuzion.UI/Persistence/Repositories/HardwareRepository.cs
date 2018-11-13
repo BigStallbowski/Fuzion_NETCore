@@ -34,6 +34,36 @@ namespace Fuzion.UI.Persistence.Repositories
             return hardware.FirstOrDefault();
         }
 
+        public async Task<int> TotalHardwareCount()
+        {
+            return await FuzionContext.Hardware
+                .CountAsync(x => x.IsRetired != 1);
+        }
+
+        public async Task<int> TotalAvailableWorkstationCount()
+        {
+            return await FuzionContext.Hardware
+                .CountAsync(x => x.HardwareType.Name == "Workstation");
+        }
+
+        public async Task<int> TotalAvailableLaptopCount()
+        {
+            return await FuzionContext.Hardware
+                .CountAsync(x => x.HardwareType.Name == "Laptop");
+        }
+
+        public async Task<int> TotalAvailableMobileCount()
+        {
+            return await FuzionContext.Hardware
+                .CountAsync(x => x.HardwareType.Name == "Mobile");
+        }
+  
+        public async Task<int> TotalDeployedCount()
+        {
+            return await FuzionContext.Hardware
+                .CountAsync(x => x.IsAssigned == 1);
+        }
+
         public async Task CreateHardware(Hardware hardware)
         {
             Create(hardware);

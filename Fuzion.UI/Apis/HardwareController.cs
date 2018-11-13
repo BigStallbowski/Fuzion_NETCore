@@ -37,6 +37,41 @@ namespace Fuzion.UI.Apis
             return Ok(hardware);
         }
 
+        [HttpGet("totalhardwarecount")]
+        public async Task<ActionResult> TotalHardwareCount()
+        {
+            var totalHardwareCount = await _uow.Hardware.TotalHardwareCount();
+            return Ok(totalHardwareCount);
+        }
+
+        [HttpGet("availableworkstationcount")]
+        public async Task<ActionResult> AvailableWorkstationCount()
+        {
+            var availableWorkstationCount = await _uow.Hardware.TotalAvailableWorkstationCount();
+            return Ok(availableWorkstationCount);
+        }
+
+        [HttpGet("availablelaptopcount")]
+        public async Task<ActionResult> AvailableLaptopCount()
+        {
+            var availableLaptopCount = await _uow.Hardware.TotalAvailableLaptopCount();
+            return Ok(availableLaptopCount);
+        }
+
+        [HttpGet("availablemobilecount")]
+        public async Task<ActionResult> AvailableMobileCount()
+        {
+            var availableMobileCount = await _uow.Hardware.TotalAvailableMobileCount();
+            return Ok(availableMobileCount);
+        }
+
+        [HttpGet("totaldeployedcount")]
+        public async Task<ActionResult> TotalDeployedCount()
+        {
+            var totalDeployedCount = await _uow.Hardware.TotalDeployedCount();
+            return Ok(totalDeployedCount);
+        }
+
         [HttpPost]
         [ModelValidation]
         public async Task<ActionResult> CreateHardware([FromBody] Hardware hardware)
