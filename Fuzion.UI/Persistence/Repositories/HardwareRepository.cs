@@ -41,13 +41,13 @@ namespace Fuzion.UI.Persistence.Repositories
             HardwareCounts hardwareCounts = new HardwareCounts
             {
                 TotalAvailableHardware = await FuzionContext.Hardware
-                    .CountAsync(x => x.IsRetired != 1 && x.IsAssigned != 1),
+                    .CountAsync(x => x.IsRetired != 1),
                 TotalAvailableWorkstations = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned != 1),
+                    .CountAsync(x => x.HardwareType.Name == "Workstation"),
                 TotalAvailableLaptops = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
+                    .CountAsync(x => x.HardwareType.Name == "Laptop"),
                 TotalAvailableMobileDevices = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
+                    .CountAsync(x => x.HardwareType.Name == "Mobile"),
                 TotalDeployedHardware = await FuzionContext.Hardware
                     .CountAsync(x => x.IsAssigned == 1),
                 TotalDeployedWorkstations = await FuzionContext.Hardware
