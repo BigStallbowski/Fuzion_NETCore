@@ -39,7 +39,7 @@ namespace Fuzion.UI.Core.Context
             return base.SaveChanges();
         }
 
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, 
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             AddAuditInfo();

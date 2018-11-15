@@ -9,8 +9,7 @@ namespace Fuzion.UI.Persistence.Interfaces
     {
         Task<IEnumerable<Hardware>> GetAllHardwareWithDetails();
         Task<Hardware> GetHardwareById(int id);
-        Task<TotalAvailableHardwareCount> TotalHardwareCount();
-        Task<TotalDeployedHardwareCount> TotalDeployedCount();
+        Task<HardwareCounts> GetHardwareCounts();
         Task CreateHardware(Hardware hardware);
         Task UpdateHardware(Hardware hardware);
         Task DeleteHardware(Hardware hardware);

@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ITotalAvailableCount, ITotalDeployedCount } from '../shared/interfaces/interfaces';
+import { IHardwareCounts } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 
 @Injectable({
@@ -15,24 +15,25 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getTotalAvailableHardwareCount(): Observable<ITotalAvailableCount> {
-    return this.http.get<ITotalAvailableCount>(this.baseUrl + 'hardware/totalhardwarecount')
+  getHardwareCounts(): Observable<IHardwareCounts> {
+    return this.http.get<IHardwareCounts>(this.baseUrl + 'hardware/hardwarecounts')
       .pipe(
-      map(availableCounts => {
-        return availableCounts;
+      map(counts => {
+        this.calculateHardwareCountsPercentages(counts);
+        return counts;
       }),
         catchError(this.handleError)
       );
   }
 
-  getTotalDeployedCount(): Observable<ITotalDeployedCount> {
-    return this.http.get<ITotalDeployedCount>(this.baseUrl + 'hardware/totaldeployedcount')
-      .pipe(
-        map(totalDeployed => {
-          return totalDeployed;
-        }),
-          catchError(this.handleError)
-      );
+  calculateHardwareCountsPercentages(hardwareCounts: IHardwareCounts)
+  {
+    if (hardwareCounts.totalAvailableHardware && hardwareCounts.totalDeployedHardware != 0)
+    {
+      let percentage = 0;
+      percentage = hardwareCounts.totalDeployedHardware / hardwareCounts.totalAvailableHardware;
+      hardwareCounts.totalDeployedHardwarePercentage = percentage;
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../core/data.service';
-import { ITotalAvailableCount, ITotalDeployedCount } from '../shared/interfaces/interfaces';
+import { IHardwareCounts } from '../shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,42 +9,29 @@ import { ITotalAvailableCount, ITotalDeployedCount } from '../shared/interfaces/
 })
 
 export class DashboardComponent implements OnInit {
-  totalHardwareCount: ITotalAvailableCount = {
+  hardwareCounts: IHardwareCounts = {
     totalAvailableHardware: 0,
-    totalAvailableWorkstations: 0,
-    totalAvailableLaptops: 0,
-    totalAvailableMobileDevices: 0
-  };
-
-  totalDeployedCount: ITotalDeployedCount = {
     totalDeployedHardware: 0,
+    totalAvailableWorkstations: 0,
     totalDeployedWorkstations: 0,
+    totalAvailableLaptops: 0,
     totalDeployedLaptops: 0,
+    totalAvailableMobileDevices: 0,
     totalDeployedMobileDevices: 0
-  }
+  };
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.getTotalHardwareCount();
-    this.getTotalDeployedCount();
+    this.getHardwareCounts();
   }
 
-  getTotalHardwareCount() {
-    this.dataService.getTotalAvailableHardwareCount()
-      .subscribe((totalHardwareCount: ITotalAvailableCount) => {
-        this.totalHardwareCount = totalHardwareCount;
+  getHardwareCounts() {
+    this.dataService.getHardwareCounts()
+      .subscribe((counts: IHardwareCounts) => {
+        this.hardwareCounts = counts;
       },
       (err: any) => console.log(err),
-      () => console.log('getTotalHardwareCount() retrieved count'));
-  }
-
-  getTotalDeployedCount() {
-    this.dataService.getTotalDeployedCount()
-      .subscribe((totalDeployedCount: ITotalDeployedCount) => {
-        this.totalDeployedCount = totalDeployedCount;
-      },
-      (err: any) => console.log(err),
-      () => console.log('getTotalDeployedCount() retrieved count'));
+      () => console.log('getHardwareCounts() retrieved counts'));
   }
 }

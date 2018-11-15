@@ -37,18 +37,11 @@ namespace Fuzion.UI.Apis
             return Ok(hardware);
         }
 
-        [HttpGet("totalhardwarecount")]
-        public async Task<ActionResult> TotalHardwareCount()
+        [HttpGet("hardwarecounts")]
+        public async Task<ActionResult> HardwareCounts()
         {
-            var totalHardwareCount = await _uow.Hardware.TotalHardwareCount();
-            return Ok(totalHardwareCount);
-        }
-
-        [HttpGet("totaldeployedcount")]
-        public async Task<ActionResult> TotalDeployedCount()
-        {
-            var totalDeployedCount = await _uow.Hardware.TotalDeployedCount();
-            return Ok(totalDeployedCount);
+            var hardwareCounts = await _uow.Hardware.GetHardwareCounts();
+            return Ok(hardwareCounts);
         }
 
         [HttpPost]

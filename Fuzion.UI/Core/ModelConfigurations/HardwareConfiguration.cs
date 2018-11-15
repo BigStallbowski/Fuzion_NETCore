@@ -32,21 +32,26 @@ namespace Fuzion.UI.Core.ModelConfigurations
 
             builder.HasOne(h => h.HardwareType)
                 .WithMany(ht => ht.Hardware)
+                .HasForeignKey(h => h.HardwareTypeId)
                 .IsRequired();
 
             builder.HasOne(h => h.Manufacturer)
                 .WithMany(m => m.Hardware)
+                .HasForeignKey(h => h.ManufacturerId)
                 .IsRequired();
 
             builder.HasOne(h => h.Model)
                 .WithMany(m => m.Hardware)
+                .HasForeignKey(h => h.ModelId)
                 .IsRequired();
 
             builder.HasOne(h => h.OS)
-                .WithMany(o => o.Hardware);
+                .WithMany(o => o.Hardware)
+                .HasForeignKey(h => h.OSId);
 
             builder.HasOne(h => h.Purpose)
-                .WithMany(p => p.Hardware);
+                .WithMany(p => p.Hardware)
+                .HasForeignKey(h => h.PurposeId);
 
             builder.HasMany(h => h.Notes)
                 .WithOne(n => n.Hardware);

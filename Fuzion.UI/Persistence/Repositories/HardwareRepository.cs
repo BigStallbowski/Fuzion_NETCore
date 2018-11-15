@@ -36,16 +36,28 @@ namespace Fuzion.UI.Persistence.Repositories
             return hardware.FirstOrDefault();
         }
 
-        public async Task<TotalAvailableHardwareCount> TotalHardwareCount()
+        public async Task<HardwareCounts> GetHardwareCounts()
         {
-            var availableCounts = await GetTotalAvailableHardwareCounts();
-            return availableCounts;
-        }
-
-        public async Task<TotalDeployedHardwareCount> TotalDeployedCount()
-        {
-            var deployedCounts = await GetTotalDeployedHardwareCounts();
-            return deployedCounts;
+            HardwareCounts hardwareCounts = new HardwareCounts
+            {
+                TotalAvailableHardware = await FuzionContext.Hardware
+                    .CountAsync(x => x.IsRetired != 1 && x.IsAssigned != 1),
+                TotalAvailableWorkstations = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned != 1),
+                TotalAvailableLaptops = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
+                TotalAvailableMobileDevices = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
+                TotalDeployedHardware = await FuzionContext.Hardware
+                    .CountAsync(x => x.IsAssigned == 1),
+                TotalDeployedWorkstations = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned == 1),
+                TotalDeployedLaptops = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned == 1),
+                TotalDeployedMobileDevices = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Mobile" && x.IsAssigned == 1)
+            };
+            return hardwareCounts;
         }
 
         public async Task CreateHardware(Hardware hardware)
@@ -88,38 +100,6 @@ namespace Fuzion.UI.Persistence.Repositories
             hardware.IsRetired = 1;
             Update(hardware);
             await SaveAsync();
-        }
-
-        private async Task<TotalAvailableHardwareCount> GetTotalAvailableHardwareCounts()
-        {
-            TotalAvailableHardwareCount availableCounts = new TotalAvailableHardwareCount
-            {
-                TotalAvailableHardware = await FuzionContext.Hardware
-                    .CountAsync(x => x.IsRetired != 1 && x.IsAssigned != 1),
-                TotalAvailableWorkstations = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned != 1),
-                TotalAvailableLaptops = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
-                TotalAvailableMobileDevices = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1)
-            };
-            return availableCounts;
-        }
-
-        private async Task<TotalDeployedHardwareCount> GetTotalDeployedHardwareCounts()
-        {
-            TotalDeployedHardwareCount deployedCounts = new TotalDeployedHardwareCount
-            {
-                TotalDeployedHardware = await FuzionContext.Hardware
-                    .CountAsync(x => x.IsAssigned == 1),
-                TotalDeployedWorkstations = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned == 1),
-                TotalDeployedLaptops = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned == 1),
-                TotalDeployedMobileDevices = await FuzionContext.Hardware
-                    .CountAsync(x => x.HardwareType.Name == "Mobile" && x.IsAssigned == 1)
-            };
-            return deployedCounts;
         }
     }
 }

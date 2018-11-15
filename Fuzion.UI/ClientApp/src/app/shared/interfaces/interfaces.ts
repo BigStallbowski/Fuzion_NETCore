@@ -1,15 +1,18 @@
 import { ModuleWithProviders } from '@angular/core';
 
-export interface ITotalAvailableCount {
+export interface IHardwareCounts {
   totalAvailableHardware: number;
+  totalDeployedHardware: number;
+  totalDeployedHardwarePercentage?: number;
   totalAvailableWorkstations: number;
+  totalDeployedWorkstations: number;
+  totalDeployedWorkstationPercentage?: number;
   totalAvailableLaptops: number;
+  totalDeployedLaptops: number;
+  totalDeployedLaptopPercentage?: number;
   totalAvailableMobileDevices: number;
+  totalDeployedMobileDevices: number;
+  totalDeployedMobileDevicePercentage?: number;
 }
 
-export interface ITotalDeployedCount {
-  totalDeployedHardware: number;
-  totalDeployedWorkstations: number;
-  totalDeployedLaptops: number;
-  totalDeployedMobileDevices: number;
-}
+
