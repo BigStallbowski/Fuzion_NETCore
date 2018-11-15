@@ -44,27 +44,6 @@ namespace Fuzion.UI.Apis
             return Ok(totalHardwareCount);
         }
 
-        [HttpGet("availableworkstationcount")]
-        public async Task<ActionResult> AvailableWorkstationCount()
-        {
-            var availableWorkstationCount = await _uow.Hardware.TotalAvailableWorkstationCount();
-            return Ok(availableWorkstationCount);
-        }
-
-        [HttpGet("availablelaptopcount")]
-        public async Task<ActionResult> AvailableLaptopCount()
-        {
-            var availableLaptopCount = await _uow.Hardware.TotalAvailableLaptopCount();
-            return Ok(availableLaptopCount);
-        }
-
-        [HttpGet("availablemobilecount")]
-        public async Task<ActionResult> AvailableMobileCount()
-        {
-            var availableMobileCount = await _uow.Hardware.TotalAvailableMobileCount();
-            return Ok(availableMobileCount);
-        }
-
         [HttpGet("totaldeployedcount")]
         public async Task<ActionResult> TotalDeployedCount()
         {

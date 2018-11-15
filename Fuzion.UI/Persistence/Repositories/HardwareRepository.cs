@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Fuzion.UI.Core.Context;
 using Fuzion.UI.Core.Models;
+using Fuzion.UI.Persistence.DTOS;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,34 +36,16 @@ namespace Fuzion.UI.Persistence.Repositories
             return hardware.FirstOrDefault();
         }
 
-        public async Task<int> TotalHardwareCount()
+        public async Task<TotalAvailableHardwareCount> TotalHardwareCount()
         {
-            return await FuzionContext.Hardware
-                .CountAsync(x => x.IsRetired != 1);
+            var availableCounts = await GetTotalAvailableHardwareCounts();
+            return availableCounts;
         }
 
-        public async Task<int> TotalAvailableWorkstationCount()
+        public async Task<TotalDeployedHardwareCount> TotalDeployedCount()
         {
-            return await FuzionContext.Hardware
-                .CountAsync(x => x.HardwareType.Name == "Workstation");
-        }
-
-        public async Task<int> TotalAvailableLaptopCount()
-        {
-            return await FuzionContext.Hardware
-                .CountAsync(x => x.HardwareType.Name == "Laptop");
-        }
-
-        public async Task<int> TotalAvailableMobileCount()
-        {
-            return await FuzionContext.Hardware
-                .CountAsync(x => x.HardwareType.Name == "Mobile");
-        }
-  
-        public async Task<int> TotalDeployedCount()
-        {
-            return await FuzionContext.Hardware
-                .CountAsync(x => x.IsAssigned == 1);
+            var deployedCounts = await GetTotalDeployedHardwareCounts();
+            return deployedCounts;
         }
 
         public async Task CreateHardware(Hardware hardware)
@@ -104,6 +88,38 @@ namespace Fuzion.UI.Persistence.Repositories
             hardware.IsRetired = 1;
             Update(hardware);
             await SaveAsync();
+        }
+
+        private async Task<TotalAvailableHardwareCount> GetTotalAvailableHardwareCounts()
+        {
+            TotalAvailableHardwareCount availableCounts = new TotalAvailableHardwareCount
+            {
+                TotalAvailableHardware = await FuzionContext.Hardware
+                    .CountAsync(x => x.IsRetired != 1 && x.IsAssigned != 1),
+                TotalAvailableWorkstations = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned != 1),
+                TotalAvailableLaptops = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1),
+                TotalAvailableMobileDevices = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned != 1)
+            };
+            return availableCounts;
+        }
+
+        private async Task<TotalDeployedHardwareCount> GetTotalDeployedHardwareCounts()
+        {
+            TotalDeployedHardwareCount deployedCounts = new TotalDeployedHardwareCount
+            {
+                TotalDeployedHardware = await FuzionContext.Hardware
+                    .CountAsync(x => x.IsAssigned == 1),
+                TotalDeployedWorkstations = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Workstation" && x.IsAssigned == 1),
+                TotalDeployedLaptops = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Laptop" && x.IsAssigned == 1),
+                TotalDeployedMobileDevices = await FuzionContext.Hardware
+                    .CountAsync(x => x.HardwareType.Name == "Mobile" && x.IsAssigned == 1)
+            };
+            return deployedCounts;
         }
     }
 }

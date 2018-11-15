@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Fuzion.UI.Core.Models;
+using Fuzion.UI.Persistence.DTOS;
 
 namespace Fuzion.UI.Persistence.Interfaces
 {
@@ -8,11 +9,8 @@ namespace Fuzion.UI.Persistence.Interfaces
     {
         Task<IEnumerable<Hardware>> GetAllHardwareWithDetails();
         Task<Hardware> GetHardwareById(int id);
-        Task<int> TotalHardwareCount();
-        Task<int> TotalDeployedCount();
-        Task<int> TotalAvailableWorkstationCount();
-        Task<int> TotalAvailableLaptopCount();
-        Task<int> TotalAvailableMobileCount();
+        Task<TotalAvailableHardwareCount> TotalHardwareCount();
+        Task<TotalDeployedHardwareCount> TotalDeployedCount();
         Task CreateHardware(Hardware hardware);
         Task UpdateHardware(Hardware hardware);
         Task DeleteHardware(Hardware hardware);

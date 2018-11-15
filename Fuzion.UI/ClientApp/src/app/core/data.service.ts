@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ICount } from '../shared/interfaces/interfaces';
+import { ITotalAvailableCount, ITotalDeployedCount } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 
 @Injectable({
@@ -15,10 +15,23 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getTotalHardwareCount(): Observable<ICount> {
-    return this.http.get<ICount>(this.baseUrl + 'hardware/totalhardwarecount')
+  getTotalAvailableHardwareCount(): Observable<ITotalAvailableCount> {
+    return this.http.get<ITotalAvailableCount>(this.baseUrl + 'hardware/totalhardwarecount')
       .pipe(
+      map(availableCounts => {
+        return availableCounts;
+      }),
         catchError(this.handleError)
+      );
+  }
+
+  getTotalDeployedCount(): Observable<ITotalDeployedCount> {
+    return this.http.get<ITotalDeployedCount>(this.baseUrl + 'hardware/totaldeployedcount')
+      .pipe(
+        map(totalDeployed => {
+          return totalDeployed;
+        }),
+          catchError(this.handleError)
       );
   }
 
