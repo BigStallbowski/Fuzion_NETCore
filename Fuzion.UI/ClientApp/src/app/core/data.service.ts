@@ -28,10 +28,17 @@ export class DataService {
 
   calculateHardwareCountsPercentages(hardwareCounts: IHardwareCounts)
   {
-    if (hardwareCounts.totalAvailableHardware && hardwareCounts.totalDeployedHardware != 0)
+    if (hardwareCounts.totalAvailableHardware != 0 && hardwareCounts.totalDeployedHardware != 0)
     {
       let percentage = 0;
       percentage = hardwareCounts.totalDeployedHardware / hardwareCounts.totalAvailableHardware;
+      hardwareCounts.totalDeployedHardwarePercentage = percentage;
+    }
+
+    if (hardwareCounts.totalAvailableWorkstations != 0 && hardwareCounts.totalAvailableWorkstations != 0)
+    {
+      let percentage = 0;
+      percentage = hardwareCounts.totalDeployedWorkstations / hardwareCounts.totalAvailableWorkstations;
       hardwareCounts.totalDeployedHardwarePercentage = percentage;
     }
   }
