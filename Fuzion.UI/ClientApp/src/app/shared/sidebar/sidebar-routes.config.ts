@@ -4,15 +4,15 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
 
   {
-    path: '', title: 'Dashboard', icon: 'icon-home', class: '', badge: '2', badgeClass: 'badge badge-pill badge-danger mt-1', isExternalLink: false,
+    path: '', title: 'Dashboard', icon: 'icon-home', class: '', badge: '2', badgeClass: '', isExternalLink: false,
     submenu: []
   },
   {
-    path: '/assign', title: 'Assign Device', icon: 'ft-user-plus', class: '', badge: '2', badgeClass: 'badge badge-pill badge-danger mt-1', isExternalLink: false,
+    path: '/hardware/assign', title: 'Assign Device', icon: 'ft-user-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
     submenu: []
   },
   {
-    path: '/adddevice', title: 'Add Device', icon: 'ft-plus', class: '', badge: '2', badgeClass: 'badge badge-pill badge-danger mt-1', isExternalLink: false,
+    path: '/adddevice', title: 'Add Device', icon: 'ft-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
     submenu: []
   },
   {
