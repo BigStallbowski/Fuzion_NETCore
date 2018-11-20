@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { IHardwareCounts } from '../shared/interfaces/interfaces';
+import { IHardwareCounts, IHardwareList } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 
 @Injectable({
@@ -22,6 +22,16 @@ export class DataService {
         this.calculateHardwareCountsPercentages(counts);
         return counts;
       }),
+        catchError(this.handleError)
+      );
+  }
+
+  getHardwareList(): Observable<IHardwareList[]> {
+    return this.http.get<IHardwareList[]>(this.baseUrl + 'hardware')
+      .pipe(
+        map(hardwareList => {
+          return hardwareList;
+        }),
         catchError(this.handleError)
       );
   }

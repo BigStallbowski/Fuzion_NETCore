@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/styles.css",
               "src/assets/sass/app.scss"
             ],
             "scripts": [
@@ -79,6 +80,7 @@
               "src/assets/js/perfect-scrollbar.jquery.min.js"
             ],
             "styles": [
+              "src/styles.css",
               "src/assets/sass/app.scss"
             ],
             "assets": [
