@@ -1,5 +1,24 @@
 import { ModuleWithProviders } from '@angular/core';
 
+export interface IHardware {
+  id?: number;
+  assetNumber: string;
+  serialNumber: string;
+  assignedTo: string;
+  hardwareType?: number;
+  hardwareTypeId?: number;
+  manufacturer?: number;
+  manufacturerId?: number;
+  model?: number;
+  modelId?: number;
+  operatingSystem?: string;
+  osId?: number;
+  purpose?: number;
+  purposeId?: number;
+  isAssigned: number;
+  isRetired: number;
+}
+
 export interface IHardwareCounts {
   totalAvailableHardware: number;
   totalDeployedHardware: number;
@@ -15,23 +34,15 @@ export interface IHardwareCounts {
   totalDeployedMobileDevicePercentage?: number;
 }
 
-export interface IHardware {
-  id?: number,
-  assetNumber: string,
-  serialNumber: string,
-  assignedTo: string,
-  hardwareTypeId: number,
-  manufacturerId: number,
-  modelId: number,
-  osId: number,
-  purposeId: number;
-  isAssigned: number,
-  isRetired: number
+export interface IHardwareResponse {
+  status: boolean;
+  hardware: IHardware;
 }
 
-export interface IHardwareList {
-  id: number,
-  assetNumber: string
+export interface IList {
+  id?: number;
+  name: string;
 }
+
 
 

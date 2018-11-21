@@ -71,6 +71,28 @@ namespace Fuzion.UI.Apis
             return CreatedAtRoute("GetHardwareById", new {id = hardware.Id}, hardware);
         }
 
+        [HttpPut("{id}/assign")]
+        public async Task<ActionResult> AssignHardware([FromBody] Hardware hardwareToAssign)
+        {
+            if (hardwareToAssign.IsObjectNull())
+            {
+                return BadRequest("Object is null");
+            }
+            if (string.IsNullOrEmpty(hardwareToAssign.AssignedTo))
+            {
+                return BadRequest("Assigned To Field Required");
+            }
+
+            var hardware = await _uow.Hardware.GetHardwareById(hardwareToAssign.Id);
+            if (hardware.IsEmptyObject())
+            {
+                return NotFound();
+            }
+
+            await _uow.Hardware.AssignHardware(hardwareToAssign);
+            return CreatedAtRoute("GetHardwareById", new {id = hardwareToAssign.Id, hardwareToAssign});
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteHardware(int id)
         {

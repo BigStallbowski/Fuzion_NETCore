@@ -2,7 +2,7 @@ import { Component , OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../../core/data.service';
-import { IHardware, IHardwareList } from '../../shared/interfaces/interfaces';
+import { IHardware, IList } from '../../shared/interfaces/interfaces';
 
 @Component({
     selector: 'assign-hardware',
@@ -23,16 +23,17 @@ export class AssignHardwareComponent implements OnInit {
         assetNumber: '',
         serialNumber: '',
         assignedTo: '',
-        hardwareTypeId: 0,
-        manufacturerId: 0,
-        modelId: 0,
-        osId: 0,
         purposeId: 0,
         isAssigned: 0,
         isRetired: 0
     };
 
-    hardwareList: IHardwareList[];
+    hardwareList: IHardware[];
+    hardwareTypeList: IList[];
+    manufacturerList: IList[];
+    modelList: IList[];
+    operatingSystemList: IList[];
+    purposeList: IList[];
 
     constructor(private router: Router,
         private route: ActivatedRoute,
@@ -40,6 +41,11 @@ export class AssignHardwareComponent implements OnInit {
 
     ngOnInit() {
         this.getHardwareList();
+        this.getHardwareTypeList();
+        this.getManufacturerList();
+        this.getModelList();
+        this.getOperatingSystemList();
+        this.getPurposeList();
     }
 
     onHardwareChange($event) {
@@ -51,6 +57,35 @@ export class AssignHardwareComponent implements OnInit {
     }
 
     getHardwareList() {
-        this.dataService.getHardwareList().subscribe((hw: IHardwareList[]) => this.hardwareList = hw);
+        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => this.hardwareList = hw);
+    }
+
+    getHardwareTypeList() {
+        this.dataService.getHardwareTypeList().subscribe((hardwareTypes: IList[]) => this.hardwareTypeList = hardwareTypes);
+    }
+
+    getManufacturerList() {
+        this.dataService.getManufacturerList().subscribe((manufacturers: IList[]) => this.manufacturerList = manufacturers);
+    }
+
+    getModelList() {
+        this.dataService.getModelList().subscribe((models: IList[]) => this.modelList = models);
+    }
+
+    getOperatingSystemList() {
+        this.dataService.getOperatingSystemList().subscribe((operatingSystems: IList[]) => this.operatingSystemList = operatingSystems);
+    }
+
+    getPurposeList() {
+        this.dataService.getPurposeList().subscribe((purposes: IList[]) => this.purposeList = purposes);
+    }
+
+    submit() {
+            this.dataService.assignHardware(this.hardware)
+                .subscribe((hardware: IHardware) => {
+
+                },
+                (err: any) => console.log(err));
+        
     }
 }
