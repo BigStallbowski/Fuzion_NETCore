@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { IHardware, IHardwareCounts, IHardwareResponse, IList } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
+import { HardwareModule } from '../hardware/hardware.module';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,13 @@ export class DataService {
         this.calculateHardwareCountsPercentages(counts);
         return counts;
       }),
+        catchError(this.handleError)
+      );
+  }
+
+  getHardwareDetails(id: number): Observable<IHardware> {
+    return this.http.get<IHardware>(this.baseUrl + 'hardware/' + id)
+      .pipe(
         catchError(this.handleError)
       );
   }

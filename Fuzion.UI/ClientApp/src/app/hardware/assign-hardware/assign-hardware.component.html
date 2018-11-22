@@ -15,13 +15,14 @@
                 <ng-select [items]="hardwareList"
                            bindLabel="assetNumber"
                            bindValue="id"
-                           [(ngModel)]="hardware.assetNumber"
+                           [(ngModel)]="hardware.id"
                            name="assetNumber"
                            class="form-control"
                            (change)="onHardwareChange($event)"  
                            required>
                 </ng-select>
               </div>
+              <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
               <div class="form-group">
                 <label>Hardware Type</label>
                 <ng-select [items]="hardwareTypeList"
@@ -88,6 +89,7 @@
                   required>
                 </ng-select>
               </div>
+            </div>
               <div class="form-group">
                 <label>Assigned To</label>
                 <input type="text" class="form-control">

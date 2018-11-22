@@ -15,7 +15,7 @@ import { AssignHardwareComponent } from './assign-hardware/assign-hardware.compo
         FormsModule,
         ReactiveFormsModule,
         NgbModule, 
-        NgSelectModule
+        NgSelectModule,
     ],
     declarations: [
         AssignHardwareComponent

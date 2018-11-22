@@ -1,4 +1,5 @@
 import { Component , OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../../core/data.service';
@@ -14,6 +15,14 @@ import { IHardware, IList } from '../../shared/interfaces/interfaces';
             border: none;
           }
         `
+    ],
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({
+                opacity: 0
+            })),
+            transition('void <=> *', animate(1000))
+        ])
     ]
 })
 
@@ -35,6 +44,8 @@ export class AssignHardwareComponent implements OnInit {
     operatingSystemList: IList[];
     purposeList: IList[];
 
+    showHardwareInfo: boolean;
+
     constructor(private router: Router,
         private route: ActivatedRoute,
         private dataService: DataService) { }
@@ -46,10 +57,25 @@ export class AssignHardwareComponent implements OnInit {
         this.getModelList();
         this.getOperatingSystemList();
         this.getPurposeList();
+        this.showHardwareInfo = false;
     }
 
     onHardwareChange($event) {
-        console.log($event.assetNumber);
+        if (typeof $event != 'undefined')
+        {
+            console.log($event.id);
+            this.dataService.getHardwareDetails($event.id)
+            .subscribe((hardware: IHardware) => {
+                this.hardware = hardware;
+                this.hardware.assetNumber = $event.assetNumber;
+                this.showHardwareInfo = true;
+            },
+            (err: any) => console.log(err));
+        } else {
+            this.showHardwareInfo = false;
+            this.hardware.assetNumber = '';
+        }
+       
     }
 
     onHardwareClear() {
