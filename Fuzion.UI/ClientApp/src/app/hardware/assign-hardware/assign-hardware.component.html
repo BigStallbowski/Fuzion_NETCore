@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="card">
       <div class="card-header">
         <div class="card-title-wrap bar-primary">
@@ -8,7 +8,7 @@
       </div>
       <div class="card-body">
         <div class="px-3">
-          <form (ngSubmit)="submit()" class="form" novalidate>
+          <form (ngSubmit)="submit()" #assignHardwareForm="ngForm" class="form" novalidate>
             <div class='form-body'>
               <div class="form-group">
                 <label>Asset Number</label>
@@ -17,10 +17,12 @@
                            bindValue="id"
                            [(ngModel)]="hardware.id"
                            name="assetNumber"
+                           #assetNumber="ngModel"
                            class="form-control"
                            (change)="onHardwareChange($event)"  
                            required>
                 </ng-select>
+                <small class="form-text text-muted danger" [hidden]="assetNumber.untouched || assetNumber.valid">Asset Number Is Required</small>
               </div>
               <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
               <div class="form-group">
@@ -92,7 +94,8 @@
             </div>
               <div class="form-group">
                 <label>Assigned To</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="hardware.assignedTo" #assignedTo="ngModel" name="assignedTo">
+                <small class="form-text text-muted danger" [hidden]="assignedTo.untouched || assignedTo.valid">Asset Number Is Required</small>
               </div>
               <div class="row">
                 <div class="col-md-6">
@@ -114,16 +117,48 @@
               </div>
             </div>
             <div class="form-actions">
-              <button type="button" class="btn btn-raised btn-danger mr-1">
+              <button class="btn btn-raised btn-danger mr-1" (click)="cancel($event)">
                 <i class="icon-trash"></i> Cancel
               </button>
-              <button type="submit" class="btn btn-raised btn-success">
+              <button type="submit" class="btn btn-raised btn-success" [disabled]="!assignHardwareForm.valid">
                 <i class="icon-note"></i> Save
               </button>
             </div>
           </form>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+      <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title-wrap bar-primary">
+          <h4 class="card-title">Additional Information</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <ngb-tabset type="pills">
+            <ngb-tab title="Warranty Information">
+              <ng-template ngbTabContent>
+                <p>Warranty Info</p>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Notes">
+              <ng-template ngbTabContent>
+                <p>Notes</p>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Assignment History">
+              <ng-template ngbTabContent>
+                <p>Assignment History</p>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </div>

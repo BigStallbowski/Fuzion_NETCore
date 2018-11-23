@@ -22,6 +22,16 @@ import { IHardware, IList } from '../../shared/interfaces/interfaces';
                 opacity: 0
             })),
             transition('void <=> *', animate(1000))
+        ]),
+        trigger('enterLeave', [
+            state('flyIn', style({ transform: 'translateX(-200%)'})),
+            transition(':enter', [
+                style({ transform: 'translate(100%)' }),
+                animate('0.3s ease-in')
+            ]),
+            transition(':leave', [
+                animate('0.3s ease-out', style({ transform: 'translate(100%)'}))
+            ])
         ])
     ]
 })
@@ -59,6 +69,11 @@ export class AssignHardwareComponent implements OnInit {
         this.getPurposeList();
         this.showHardwareInfo = false;
     }
+    
+    cancel(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['/']);
+    }
 
     onHardwareChange($event) {
         if (typeof $event != 'undefined')
@@ -74,6 +89,7 @@ export class AssignHardwareComponent implements OnInit {
         } else {
             this.showHardwareInfo = false;
             this.hardware.assetNumber = '';
+            this.hardware.assignedTo = '';
         }
        
     }
@@ -83,7 +99,8 @@ export class AssignHardwareComponent implements OnInit {
     }
 
     getHardwareList() {
-        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => this.hardwareList = hw);
+        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => 
+            this.hardwareList = hw.filter(unassigned => unassigned.isAssigned == 0));
     }
 
     getHardwareTypeList() {
@@ -109,7 +126,6 @@ export class AssignHardwareComponent implements OnInit {
     submit() {
             this.dataService.assignHardware(this.hardware)
                 .subscribe((hardware: IHardware) => {
-
                 },
                 (err: any) => console.log(err));
         
