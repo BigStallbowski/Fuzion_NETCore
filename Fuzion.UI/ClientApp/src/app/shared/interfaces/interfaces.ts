@@ -4,7 +4,7 @@ export interface IHardware {
   id?: number;
   assetNumber: string;
   serialNumber: string;
-  assignedTo: string;
+  assignedTo?: string;
   hardwareType?: number;
   hardwareTypeId?: number;
   manufacturer?: number;
@@ -15,8 +15,8 @@ export interface IHardware {
   osId?: number;
   purpose?: number;
   purposeId?: number;
-  isAssigned: number;
-  isRetired: number;
+  isAssigned?: number;
+  isRetired?: number;
 }
 
 export interface IHardwareCounts {

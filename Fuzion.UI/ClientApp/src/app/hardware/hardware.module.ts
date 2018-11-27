@@ -6,6 +6,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { HardwareRoutingModule } from './hardware-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { SharedModule } from '../shared/shared.module';
 import { AssignHardwareComponent } from './assign-hardware/assign-hardware.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { AssignHardwareComponent } from './assign-hardware/assign-hardware.compo
         ReactiveFormsModule,
         NgbModule, 
         NgSelectModule,
+        SharedModule
     ],
     declarations: [
         AssignHardwareComponent

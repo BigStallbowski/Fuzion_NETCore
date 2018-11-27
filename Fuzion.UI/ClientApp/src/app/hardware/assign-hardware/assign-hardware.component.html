@@ -26,16 +26,7 @@
               </div>
               <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
               <div class="form-group">
-                <label>Hardware Type</label>
-                <ng-select [items]="hardwareTypeList"
-                  bindLabel="name"
-                  bindValue="id"
-                  [(ngModel)]="hardware.hardwareTypeId"
-                  name="hardwareType"
-                  class="form-control"
-                  (change)="onHardwareChange($event)"
-                  required>
-                </ng-select>
+                <hardware-types [(inputModel)]="hardware.hardwareTypeId"></hardware-types>
               </div>
               <div class="row">
                 <div class="col-md-6">
@@ -46,50 +37,18 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Manufacturer</label>
-                    <ng-select [items]="manufacturerList"
-                      bindLabel="name"
-                      bindValue="id"
-                      [(ngModel)]="hardware.manufacturerId"
-                      name="manufacturer"
-                      class="form-control"
-                      required>
-                    </ng-select>
+                    <manufacturers [(inputModel)]="hardware.manufacturerId"></manufacturers>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label>Model</label>
-                <ng-select [items]="modelList"
-                  bindLabel="name"
-                  bindValue="id"
-                  [(ngModel)]="hardware.modelId"
-                  name="model"
-                  class="form-control"
-                  required>
-                </ng-select>
+                <models [(inputModel)]="hardware.modelId"></models>
               </div>
               <div class="form-group">
-                <label>Operating System</label>
-                <ng-select [items]="operatingSystemList"
-                  bindLabel="name"
-                  bindValue="id"
-                  [(ngModel)]="hardware.osId"
-                  name="os"
-                  class="form-control"
-                  required>
-                </ng-select>
+                <operating-systems [(inputModel)]="hardware.osId"></operating-systems>
               </div>
               <div class="form-group">
-                <label>Purpose</label>
-                <ng-select [items]="purposeList"
-                  bindLabel="name"
-                  bindValue="id"
-                  [(ngModel)]="hardware.purposeId"
-                  name="purpose"
-                  class="form-control"
-                  required>
-                </ng-select>
+                <purposes [(inputModel)]="hardware.purposeId"></purposes>
               </div>
             </div>
               <div class="form-group">
