@@ -13,6 +13,10 @@ const routes: Routes = [
                 data: {
                     title: 'Assign Hardware'
                 }
+            },
+            {
+                path: 'assign/:id',
+                component: AssignHardwareComponent
             }
         ]
     }

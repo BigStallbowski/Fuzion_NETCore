@@ -3,7 +3,9 @@
   bindLabel="name"
   bindValue="id"
   [(ngModel)]="inputModel"
+  #purpose="ngModel"
   name="purposeId"
   class="form-control"
   required>
 </ng-select>
+<small class="form-text text-muted danger" [hidden]="purpose.valid">Purpose Is Required</small>

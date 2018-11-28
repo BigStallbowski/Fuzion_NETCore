@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -22,9 +23,14 @@ import { LayoutComponent } from './layout/layout.component';
     CoreModule,
     SharedModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    SnotifyModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

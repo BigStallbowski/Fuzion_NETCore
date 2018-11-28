@@ -3,7 +3,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../../core/data.service';
-import { IHardware, IList } from '../../shared/interfaces/interfaces';
+import { ToastrService } from '../../core/toastr.service';
+import { IHardware } from '../../shared/interfaces/interfaces';
 
 @Component({
     selector: 'assign-hardware',
@@ -37,7 +38,7 @@ import { IHardware, IList } from '../../shared/interfaces/interfaces';
 })
 
 export class AssignHardwareComponent implements OnInit {
-
+    
     hardware: IHardware = {
         assetNumber: '',
         serialNumber: '',
@@ -48,26 +49,27 @@ export class AssignHardwareComponent implements OnInit {
     };
 
     hardwareList: IHardware[];
-    hardwareTypeList: IList[];
-    manufacturerList: IList[];
-    modelList: IList[];
-    operatingSystemList: IList[];
-    purposeList: IList[];
 
     showHardwareInfo: boolean;
+    showUnassign: boolean;
 
     constructor(private router: Router,
         private route: ActivatedRoute,
-        private dataService: DataService) { }
+        private dataService: DataService,
+        private toastr: ToastrService) { }
 
     ngOnInit() {
-        this.getHardwareList();
-        this.getHardwareTypeList();
-        this.getManufacturerList();
-        this.getModelList();
-        this.getOperatingSystemList();
-        this.getPurposeList();
-        this.showHardwareInfo = false;
+        let id = this.route.snapshot.params['id'];
+        if (typeof id !== 'undefined') {
+            this.getAssignedHardware(id);
+            this.getHardwareList();
+            this.showHardwareInfo = true;
+            this.showUnassign = true;
+        } else {
+            this.getUnassignedHardware();
+            this.showHardwareInfo = false;
+            this.showUnassign = false;
+        }  
     }
     
     cancel(event: Event) {
@@ -90,44 +92,35 @@ export class AssignHardwareComponent implements OnInit {
             this.showHardwareInfo = false;
             this.hardware.assetNumber = '';
             this.hardware.assignedTo = '';
-        }
-       
+        }  
     }
 
-    onHardwareClear() {
-        console.log("Cleared");
+    getAssignedHardware(id: number) {
+        this.dataService.getHardwareDetails(id)
+            .subscribe((hardware: IHardware) => {
+                this.hardware = hardware;
+            },
+            (err: any) => console.log(err));
     }
 
     getHardwareList() {
         this.dataService.getHardwareList().subscribe((hw: IHardware[]) => 
+            this.hardwareList = hw);
+    }
+
+    getUnassignedHardware() {
+        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => 
             this.hardwareList = hw.filter(unassigned => unassigned.isAssigned == 0));
-    }
-
-    getHardwareTypeList() {
-        this.dataService.getHardwareTypeList().subscribe((hardwareTypes: IList[]) => this.hardwareTypeList = hardwareTypes);
-    }
-
-    getManufacturerList() {
-        this.dataService.getManufacturerList().subscribe((manufacturers: IList[]) => this.manufacturerList = manufacturers);
-    }
-
-    getModelList() {
-        this.dataService.getModelList().subscribe((models: IList[]) => this.modelList = models);
-    }
-
-    getOperatingSystemList() {
-        this.dataService.getOperatingSystemList().subscribe((operatingSystems: IList[]) => this.operatingSystemList = operatingSystems);
-    }
-
-    getPurposeList() {
-        this.dataService.getPurposeList().subscribe((purposes: IList[]) => this.purposeList = purposes);
     }
 
     submit() {
             this.dataService.assignHardware(this.hardware)
                 .subscribe((hardware: IHardware) => {
+                    this.toastr.success('Device assigned', 'Success');
                 },
-                (err: any) => console.log(err));
-        
+                (err: any) => {
+                    console.log(err);
+                    this.toastr.error(err, 'Error');
+                });    
     }
 }

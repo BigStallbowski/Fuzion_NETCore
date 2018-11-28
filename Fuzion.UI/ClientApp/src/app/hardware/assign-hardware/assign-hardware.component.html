@@ -22,7 +22,7 @@
                            (change)="onHardwareChange($event)"  
                            required>
                 </ng-select>
-                <small class="form-text text-muted danger" [hidden]="assetNumber.untouched || assetNumber.valid">Asset Number Is Required</small>
+                <small class="form-text text-muted danger" [hidden]="assetNumber.valid">Asset Number Is Required</small>
               </div>
               <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
               <div class="form-group">
@@ -32,7 +32,8 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Serial Number</label>
-                    <input type="text" class="form-control" [(ngModel)]="hardware.serialNumber" name="serialNumber">
+                    <input type="text" class="form-control" [(ngModel)]="hardware.serialNumber" name="serialNumber" #serialNumber="ngModel" required>
+                    <small class="form-text text-muted danger" [hidden]="serialNumber.valid">Serial Number Is Required</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -53,8 +54,8 @@
             </div>
               <div class="form-group">
                 <label>Assigned To</label>
-                <input type="text" class="form-control" [(ngModel)]="hardware.assignedTo" #assignedTo="ngModel" name="assignedTo">
-                <small class="form-text text-muted danger" [hidden]="assignedTo.untouched || assignedTo.valid">Asset Number Is Required</small>
+                <input type="text" class="form-control" [(ngModel)]="hardware.assignedTo" #assignedTo="ngModel" name="assignedTo" required>
+                <small class="form-text text-muted danger" [hidden]="assignedTo.valid">Assignment Is Required</small>
               </div>
               <div class="row">
                 <div class="col-md-6">
@@ -76,8 +77,11 @@
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-raised btn-danger mr-1" (click)="cancel($event)">
+              <button class="btn btn-raised btn-primary mr-1" (click)="cancel($event)">
                 <i class="icon-trash"></i> Cancel
+              </button>
+              <button *ngIf="showUnassign" class="btn btn-raised btn-warning mr-1">
+                <i class="icon-lock-open"></i> Unassign
               </button>
               <button type="submit" class="btn btn-raised btn-success" [disabled]="!assignHardwareForm.valid">
                 <i class="icon-note"></i> Save
