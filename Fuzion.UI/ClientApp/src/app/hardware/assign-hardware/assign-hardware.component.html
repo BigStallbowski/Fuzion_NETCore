@@ -19,7 +19,7 @@
                            name="assetNumber"
                            #assetNumber="ngModel"
                            class="form-control"
-                           (change)="onHardwareChange($event)"  
+                           (change)="onHardwareChange($event)"
                            required>
                 </ng-select>
                 <small class="form-text text-muted danger" [hidden]="assetNumber.valid">Asset Number Is Required</small>
@@ -103,14 +103,13 @@
       <div class="card-body">
         <div class="card-block">
           <ngb-tabset type="pills">
-            <ngb-tab title="Warranty Information">
-              <ng-template ngbTabContent>
-                <p>Warranty Info</p>
-              </ng-template>
-            </ngb-tab>
             <ngb-tab title="Notes">
               <ng-template ngbTabContent>
-                <p>Notes</p>
+                  <notes [hardwareId]="hardware.id"></notes>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Warranty Information">
+              <ng-template ngbTabContent>
               </ng-template>
             </ngb-tab>
             <ngb-tab title="Assignment History">

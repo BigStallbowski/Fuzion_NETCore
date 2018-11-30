@@ -36,7 +36,6 @@
     0 40px 77px 0 rgba(0, 0, 0, 0.22);
 }
 
-
 /* Shadows (from mdl http://www.getmdl.io/) */
 
 // Focus shadow mixin.
@@ -61,7 +60,6 @@
     box-shadow: 0 12px 20px -10px rgba($color, $shadow-penumbra-opacity * 2),
     0  4px 20px 0px rgba(0,0,0, $shadow-ambient-opacity),
     0  7px 8px -5px rgba($color, $shadow-umbra-opacity);
-
 }
 
 @mixin sidebar-shadow(){

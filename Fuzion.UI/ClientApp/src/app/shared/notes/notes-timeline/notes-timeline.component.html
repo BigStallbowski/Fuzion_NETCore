@@ -1,0 +1,22 @@
+<div class="col-12 timeline-left" id="activity">
+        <div class="timeline">
+          <ul class="list-unstyled base-timeline activity-timeline" style="margin-left: 0px; margin-top: 25px;">
+            <li *ngFor="let note of notes" class="">
+              <div class="timeline-icon bg-info">
+                <i class="ft-edit-2"></i>
+              </div>
+              <div class="base-timeline-info">
+                <span class="text-uppercase">{{ note.body }}</span>
+              </div>
+              <small class="text-muted">
+                {{ note.createdBy }} - {{ note.createdOn }}
+              </small>
+              <div class="form-actions">
+                  <button class="btn btn-sm btn-raised btn-danger mr-1" placement="right" ngbTooltip="Delete note" (click)="deleteNote(note.id)">
+                    <i class="icon-trash"></i>
+                  </button>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </div> 

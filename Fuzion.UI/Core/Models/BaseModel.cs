@@ -2,7 +2,7 @@
 
 namespace Fuzion.UI.Core.Models
 {
-    public class BaseModel: IEntity
+    public class BaseModel : IEntity
     {
         public int Id { get; set; }
         public string CreatedBy { get; set; }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Fuzion.UI.Persistence.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Fuzion.UI.Persistence.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Fuzion.UI.Persistence.Repositories
 {
@@ -34,7 +34,6 @@ namespace Fuzion.UI.Persistence.Repositories
 
         public void Update(T entity)
         {
-
             _ctx.Entry(entity).State = EntityState.Detached;
             _ctx.Entry(entity).State = EntityState.Modified;
         }

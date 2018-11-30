@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
 {
@@ -42,7 +42,7 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> CreateManufacturer([FromBody] Manufacturer manufacturer)
         {
             await _uow.Manufacturers.CreateManufacturerAsync(manufacturer);
-            return CreatedAtRoute("GetManufacturerById", new {id = manufacturer.Id}, manufacturer);
+            return CreatedAtRoute("GetManufacturerById", new { id = manufacturer.Id }, manufacturer);
         }
 
         [HttpPut("{id}")]
@@ -61,7 +61,7 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.Manufacturers.UpdateManufacturerAsync(manufacturerUpdate);
-            return CreatedAtRoute("GetManufacturerById", new {id = manufacturerUpdate.Id}, manufacturerUpdate);
+            return CreatedAtRoute("GetManufacturerById", new { id = manufacturerUpdate.Id }, manufacturerUpdate);
         }
 
         [HttpDelete("{id}")]

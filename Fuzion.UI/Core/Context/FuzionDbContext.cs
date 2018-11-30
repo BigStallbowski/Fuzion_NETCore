@@ -1,16 +1,18 @@
-﻿using System;
+﻿using Fuzion.UI.Core.ModelConfigurations;
+using Fuzion.UI.Core.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Fuzion.UI.Core.ModelConfigurations;
-using Fuzion.UI.Core.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Fuzion.UI.Core.Context
 {
     public class FuzionDbContext : DbContext
     {
-        public FuzionDbContext(DbContextOptions<FuzionDbContext> options) : base(options) { }
+        public FuzionDbContext(DbContextOptions<FuzionDbContext> options) : base(options)
+        {
+        }
 
         public DbSet<Hardware> Hardware { get; set; }
         public DbSet<HardwareType> HardwareTypes { get; set; }

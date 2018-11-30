@@ -13,7 +13,6 @@
     'use strict';
 
     $(document).ready( function(){
-
         // Declare variables
         var $sidebar = $('.app-sidebar'),
         $sidebar_content = $('.sidebar-content'),
@@ -103,7 +102,6 @@
 
         // Add / remove logo text on menu collapse and expand
         $('.logo-text').on('click',function(){
-
             var listItem = $sidebar_content.find('li.open.has-sub'),
             activeItem = $sidebar_content.find('li.active');
 
@@ -142,7 +140,7 @@
                 }
             }
             else{
-                $wrapper.removeClass('nav-collapsed menu-collapsed');   
+                $wrapper.removeClass('nav-collapsed menu-collapsed');
 
                 $('.nav-toggle').find('.toggle-icon').removeClass('ft-circle').addClass('ft-disc');
                 toggle_icon.attr('data-toggle', 'expanded');
@@ -156,7 +154,7 @@
         $sidebar.on('mouseenter', function() {
             if($wrapper.hasClass('nav-collapsed')){
                 $wrapper.removeClass('menu-collapsed');
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $wrapper.removeClass('menu-animation');
                 }, 150);
                 var $listItem = $('.navigation li.nav-collapsed-open'),
@@ -174,7 +172,7 @@
         }).on('mouseleave', function(event) {
             if($wrapper.hasClass('nav-collapsed')){
                 $wrapper.addClass('menu-collapsed');
-                setTimeout(function(){ 
+                setTimeout(function(){
                     $wrapper.addClass('menu-animation');
                 }, 150);
                 var $listItem = $('.navigation li.open'),
@@ -190,7 +188,6 @@
                 $('.user-settings-wrap').addClass('d-none');
             }
         });
-
 
         // Hide menu when window width is less than 992px
         if (window.innerWidth < 992) {
@@ -252,7 +249,7 @@
         // Apply scrollbar to notification drawer
         $('.noti-list').perfectScrollbar();
 
-        // Navbar search icon click 
+        // Navbar search icon click
         $('#search').click(function(event) {
             $('#navbar-search').focus();
         });
@@ -263,5 +260,4 @@
             $('.navbar-search .dropdown-toggle').click();
         });
     });
-
 } ( jQuery ) );

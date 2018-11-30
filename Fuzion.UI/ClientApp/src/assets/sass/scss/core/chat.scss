@@ -66,7 +66,7 @@ body.chat-page{
 		margin-left: 300px;
 		padding: 20px 30px;
 	    overflow-y: scroll;
-	    text-align: center;    
+	    text-align: center;
 	    height: calc(100% - 183px);
 	    background-color: #fff;
 	    position: relative;
@@ -115,8 +115,8 @@ body.chat-page{
 			    	margin: 0;
 			    }
 			}
-		}		
-		.chat-avatar{			
+		}
+		.chat-avatar{
     			float: right;
 			.avatar {
 			    width: 50px;
@@ -142,7 +142,7 @@ body.chat-page{
 				+.chat-content:before {
 				    border-color: transparent;
 				}
-				&:before{					
+				&:before{
 					right: auto;
 				    left: -10px;
 				    border-right-color: lighten($body-bg, 18%);
@@ -154,7 +154,7 @@ body.chat-page{
     			color: $black;
     			background-color: $body-bg;
 			}
-		}		
+		}
 	}
 
 	// Form control position
@@ -169,7 +169,7 @@ body.chat-page{
 
 	// Media query
 	@include media-breakpoint-down(sm) {
-		.chat-app-window{		
+		.chat-app-window{
 		    height: calc(100% - 152px);
 		    margin-left: 0;
 		}

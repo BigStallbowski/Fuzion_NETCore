@@ -21,7 +21,7 @@ export const ROUTES: RouteInfo[] = [
 
       { path: '/assigndworkstations', title: 'Assigned', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/unassignedworkstations', title: 'Unassigned', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-      { path: '/retiredworkstations', title: 'Retired', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }   
+      { path: '/retiredworkstations', title: 'Retired', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] }
     ]
   },
   {

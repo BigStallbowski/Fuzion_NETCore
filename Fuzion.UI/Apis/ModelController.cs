@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
 {
@@ -56,7 +56,7 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> CreateModel([FromBody] Model model)
         {
             await _uow.Models.CreateModelAsync(model);
-            return CreatedAtRoute("GetModelById", new {id = model.Id}, model);
+            return CreatedAtRoute("GetModelById", new { id = model.Id }, model);
         }
 
         [HttpPut("{id}")]
@@ -75,7 +75,7 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.Models.UpdateModelAsync(modelUpdate);
-            return CreatedAtRoute("GetModelById", new {id = modelUpdate.Id}, modelUpdate);
+            return CreatedAtRoute("GetModelById", new { id = modelUpdate.Id }, modelUpdate);
         }
 
         [HttpDelete("{id}")]

@@ -31,8 +31,6 @@ $ps-scrollbar-y-rail-width: 8px !default;
 $ps-scrollbar-y-right: 0 !default;
 $ps-scrollbar-y-width: 8px !default;
 
-
-
 .ps-theme-dark {
   @include ps-container(map-merge($ps-theme-default, (
     border-radius: $ps-border-radius,

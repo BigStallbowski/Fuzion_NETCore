@@ -116,7 +116,6 @@ $bs-height-xs:   (floor($font-size-sm * 1.2) + $padding-small-vertical + 1) !def
   background-color: transparent !important;
 }
 
-
 .btn-adn           { @include btn-social(#d87a68); }
 .btn-bitbucket     { @include btn-social(#205081); }
 .btn-dropbox       { @include btn-social(#1087dd); }
@@ -207,7 +206,6 @@ $bs-height-xs:   (floor($font-size-sm * 1.2) + $padding-small-vertical + 1) !def
 .btn-vimeo-flat         { @include btn-social-flat(#1ab7ea); }
 .btn-vk-flat            { @include btn-social-flat(#587ea3); }
 .btn-yahoo-flat         { @include btn-social-flat(#720e9e); }
-
 
 // Flat Buttons with .active , On active, on focus, on active and focus, on active and hover
 .btn-adn-flat.active, .btn-adn-flat:active, .btn-adn-flat:focus, .btn-adn-flat:active:focus, .btn-adn-flat:active:hover           { @include btn-social-flat-active(#d87a68); }

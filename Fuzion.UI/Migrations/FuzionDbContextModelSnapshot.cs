@@ -202,7 +202,7 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<int?>("HardwareId");
+                    b.Property<int>("HardwareId");
 
                     b.Property<string>("LastModifiedBy");
 
@@ -314,7 +314,8 @@ namespace Fuzion.UI.Migrations
                 {
                     b.HasOne("Fuzion.UI.Core.Models.Hardware", "Hardware")
                         .WithMany("Notes")
-                        .HasForeignKey("HardwareId");
+                        .HasForeignKey("HardwareId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,5 @@ namespace Fuzion.UI.Persistence.Filters
                 context.Result = new BadRequestObjectResult("Invalid model");
             }
         }
-        
     }
 }

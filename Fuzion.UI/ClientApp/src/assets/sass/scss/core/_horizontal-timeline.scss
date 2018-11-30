@@ -1,10 +1,8 @@
-
 @import 'partials/variables'; // colors, fonts etc...
 
 @import 'partials/mixins'; // custom mixins
 
 @import 'partials/layout'; // responsive grid and media queries
-
 
 // Horizontal timeline
 .cd-horizontal-timeline {
@@ -12,7 +10,7 @@
 	margin: 2em auto;
 	-webkit-transition: opacity .2s; /* Safari */
 	transition: opacity .2s;
-	
+
 	&::before {
 		/* never visible - this is used in jQuery to check the current MQ */
 		content: 'mobile';
@@ -92,7 +90,6 @@
 		transform-origin: left center;
 		-webkit-transition: transform .3s; /* Safari */
 		transition: transform .3s;
-		
 	}
 
 	.events a {
@@ -143,7 +140,7 @@
 
 	@include MQ(L) {
 		margin: 6em auto;
-		
+
 		&::before {
 			/* never visible - this is used in jQuery to check the current MQ */
 			content: 'desktop';
@@ -168,7 +165,7 @@
 	white-space: nowrap;
 	-webkit-transition: border-color .3s; /* Safari */
 	transition: border-color .3s;
-	
+
 	&::after {
 		/* arrow icon */
 		content: '';
@@ -248,13 +245,13 @@
 			-webkit-animation-name: cd-enter-left; /* Safari 4.0 - 8.0 */
 			animation-name: cd-enter-left;
 		}
-		
+
 		&.leave-right, &.leave-left {
 			-webkit-animation-direction: reverse; /* Safari 4.0 - 8.0 */
 			animation-direction: reverse;
 		}
 	}
-	
+
 	li > * {
 		margin: 0 auto;
 		max-width: 800px;
@@ -273,7 +270,6 @@
 	em, p {
 		line-height: 1.6;
 	}
-	
 }
 
 // Timeline animations

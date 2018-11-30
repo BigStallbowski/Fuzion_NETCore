@@ -17,7 +17,6 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class ManufacturerDropdownComponent implements OnInit {
-    
     @Input() inputModel: any;
 
     manufacturerList: IList[];

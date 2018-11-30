@@ -10,7 +10,6 @@ import { IHardware, IList } from '../../shared/interfaces/interfaces';
 })
 
 export class AddHardwareComponent implements OnInit {
-
     hardware: IHardware = {
         assetNumber: '',
         serialNumber: ''

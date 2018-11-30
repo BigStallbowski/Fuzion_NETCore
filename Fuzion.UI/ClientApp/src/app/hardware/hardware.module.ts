@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';  
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { HardwareRoutingModule } from './hardware-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ import { AssignHardwareComponent } from './assign-hardware/assign-hardware.compo
         HardwareRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        NgbModule, 
+        NgbModule,
         NgSelectModule,
         SharedModule
     ],
@@ -25,5 +25,4 @@ import { AssignHardwareComponent } from './assign-hardware/assign-hardware.compo
 })
 
 export class HardwareModule {
-
 }

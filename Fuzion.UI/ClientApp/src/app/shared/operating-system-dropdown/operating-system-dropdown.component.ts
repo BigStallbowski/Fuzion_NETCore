@@ -17,7 +17,6 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class OperatingSystemDropdownComponent implements OnInit {
-    
     @Input() inputModel: any;
 
     operatingSystemList: IList[];

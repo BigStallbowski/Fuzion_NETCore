@@ -102,7 +102,7 @@
       }
       .card-header{
         .bar-#{$color_name}{
-          border-color: $color_value !important;  
+          border-color: $color_value !important;
         }
       }
       .card.card-outline-#{$color_name}{
@@ -252,7 +252,7 @@
     background-color: $color_value;
   }
   input:focus ~ .bg-#{$color}{  // TODO: Need to check input-type sibling border color issue(form>input-groups)
-    box-shadow: 0 0 0 .075rem #fff, 0 0 0 .21rem $color_value; 
+    box-shadow: 0 0 0 .075rem #fff, 0 0 0 .21rem $color_value;
   }
   .border-#{$color} {
     border: 1px solid $color_value;

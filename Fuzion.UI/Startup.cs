@@ -46,7 +46,6 @@ namespace Fuzion.UI
                 options.UseSqlServer(Configuration.GetConnectionString("FuzionSqlServerConnectionString"));
             });
 
-
             services.AddScoped<ModelValidationAttribute>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<FuzionDbSeeder>();

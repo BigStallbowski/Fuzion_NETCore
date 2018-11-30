@@ -8,7 +8,6 @@ import {
 })
 
 export class MatchHeightDirective implements AfterViewInit {
-
   @Input()
   matchHeight: string;
 
@@ -20,7 +19,6 @@ export class MatchHeightDirective implements AfterViewInit {
   }
 
   matchHeights(parent: HTMLElement, className: string) {
-
       if (!parent) return;
 
       const children = parent.getElementsByClassName(className);

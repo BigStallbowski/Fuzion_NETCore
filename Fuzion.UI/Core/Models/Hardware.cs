@@ -9,7 +9,7 @@ namespace Fuzion.UI.Core.Models
         public byte IsAssigned { get; set; }
         public byte IsRetired { get; set; }
         public string AssignedTo { get; set; }
-    
+
         public int HardwareTypeId { get; set; }
         public HardwareType HardwareType { get; set; }
 

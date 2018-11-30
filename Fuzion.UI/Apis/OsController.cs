@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
 {
@@ -42,7 +42,7 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> CreateOperatingSystem([FromBody] OS os)
         {
             await _uow.OS.CreateOSAsync(os);
-            return CreatedAtRoute("GetOperatingSystemById", new {id = os.Id}, os);
+            return CreatedAtRoute("GetOperatingSystemById", new { id = os.Id }, os);
         }
 
         [HttpPut("{id}")]
@@ -61,7 +61,7 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.OS.UpdateOSAsync(osToUpdate);
-            return CreatedAtRoute("GetOperatingSystemById", new {id = osToUpdate.Id}, osToUpdate);
+            return CreatedAtRoute("GetOperatingSystemById", new { id = osToUpdate.Id }, osToUpdate);
         }
 
         [HttpDelete("{id}")]

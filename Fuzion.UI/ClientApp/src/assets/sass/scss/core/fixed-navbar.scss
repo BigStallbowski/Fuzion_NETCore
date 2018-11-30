@@ -25,7 +25,6 @@
 	margin-top: 85px;
 }
 
-
 .navbar{
 	.show {
 	    >.dropdown-menu {
@@ -87,7 +86,7 @@
 	        .arrow_box {
 	            position: relative;
 	            &:after {
-	                bottom: 100%; // left: 1.8rem;          
+	                bottom: 100%; // left: 1.8rem;
 	                top: 7px;
 	                border: solid transparent;
 	                content: " ";

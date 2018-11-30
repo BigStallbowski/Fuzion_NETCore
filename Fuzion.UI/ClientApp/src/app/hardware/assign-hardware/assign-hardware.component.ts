@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../../core/data.service';
 import { ToastrService } from '../../core/toastr.service';
-import { IHardware } from '../../shared/interfaces/interfaces';
+import { IHardware, INote } from '../../shared/interfaces/interfaces';
 
 @Component({
     selector: 'assign-hardware',
@@ -38,7 +38,6 @@ import { IHardware } from '../../shared/interfaces/interfaces';
 })
 
 export class AssignHardwareComponent implements OnInit {
-    
     hardware: IHardware = {
         assetNumber: '',
         serialNumber: '',
@@ -49,6 +48,7 @@ export class AssignHardwareComponent implements OnInit {
     };
 
     hardwareList: IHardware[];
+    noteList: INote[];
 
     showHardwareInfo: boolean;
     showUnassign: boolean;
@@ -69,9 +69,9 @@ export class AssignHardwareComponent implements OnInit {
             this.getUnassignedHardware();
             this.showHardwareInfo = false;
             this.showUnassign = false;
-        }  
+        }
     }
-    
+
     cancel(event: Event) {
         event.preventDefault();
         this.router.navigate(['/']);
@@ -92,7 +92,7 @@ export class AssignHardwareComponent implements OnInit {
             this.showHardwareInfo = false;
             this.hardware.assetNumber = '';
             this.hardware.assignedTo = '';
-        }  
+        }
     }
 
     getAssignedHardware(id: number) {
@@ -104,12 +104,12 @@ export class AssignHardwareComponent implements OnInit {
     }
 
     getHardwareList() {
-        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => 
+        this.dataService.getHardwareList().subscribe((hw: IHardware[]) =>
             this.hardwareList = hw);
     }
 
     getUnassignedHardware() {
-        this.dataService.getHardwareList().subscribe((hw: IHardware[]) => 
+        this.dataService.getHardwareList().subscribe((hw: IHardware[]) =>
             this.hardwareList = hw.filter(unassigned => unassigned.isAssigned == 0));
     }
 
@@ -121,6 +121,6 @@ export class AssignHardwareComponent implements OnInit {
                 (err: any) => {
                     console.log(err);
                     this.toastr.error(err, 'Error');
-                });    
+                });
     }
 }

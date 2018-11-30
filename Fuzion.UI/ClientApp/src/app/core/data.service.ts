@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { IHardware, IHardwareCounts, IHardwareResponse, IList } from '../shared/interfaces/interfaces';
+import { IHardware, IHardwareCounts, IHardwareResponse, IList, INote, INoteResponse } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 import { HardwareModule } from '../hardware/hardware.module';
 
@@ -23,6 +23,13 @@ export class DataService {
           console.log('assignHardware status: ' + data.status);
           return data.hardware
         }),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteNote(id: number) : Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + 'notes/' + id)
+      .pipe(
         catchError(this.handleError)
       );
   }
@@ -85,6 +92,16 @@ export class DataService {
       );
   }
 
+  getHardwareNotes(id: number): Observable<INote[]> {
+    return this.http.get<INote[]>(this.baseUrl + 'notes/' + id)
+      .pipe(
+        map(noteList => {
+          return noteList;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
   getOperatingSystemList(): Observable<IList[]> {
     return this.http.get<IList[]>(this.baseUrl + 'operatingsystems')
       .pipe(
@@ -100,6 +117,17 @@ export class DataService {
       .pipe(
         map(operatingSystemList => {
           return operatingSystemList;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  insertNote(note: INote) : Observable<INote> {
+    return this.http.post<INoteResponse>(this.baseUrl + 'notes', note)
+      .pipe(
+        map(data => {
+          console.log('inserNote Status: ' + data.status);
+          return data.note;
         }),
         catchError(this.handleError)
       );

@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgSelectModule } from '@ng-select/ng-select'; 
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HardwareTypeDropdownComponent } from './hardware-type-dropdown/hardware-type-dropdown.component';
 import { ManufacturerDropdownComponent } from './manufacturer-dropdown/manufacturer-dropdown.component';
 import { ModelDropdownComponent } from './model-dropdown/model-dropdown.component';
+import { NotesComponent } from './notes/notes.component';
+import { NotesTimelineComponent } from './notes/notes-timeline/notes-timeline.component';
 import { OperatingSystemDropdownComponent } from './operating-system-dropdown/operating-system-dropdown.component';
 import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.component';
 
@@ -21,6 +23,8 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
     HardwareTypeDropdownComponent,
     ManufacturerDropdownComponent,
     ModelDropdownComponent,
+    NotesComponent,
+    NotesTimelineComponent,
     OperatingSystemDropdownComponent,
     PurposeDropdownComponent
   ],
@@ -38,6 +42,8 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
     HardwareTypeDropdownComponent,
     ManufacturerDropdownComponent,
     ModelDropdownComponent,
+    NotesComponent,
+    NotesTimelineComponent,
     OperatingSystemDropdownComponent,
     PurposeDropdownComponent
   ]

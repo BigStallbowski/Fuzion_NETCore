@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
-using Fuzion.UI.Persistence.Interfaces;
+﻿using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
+using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
 {

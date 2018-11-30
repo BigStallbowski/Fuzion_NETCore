@@ -54,7 +54,8 @@ namespace Fuzion.UI.Core.ModelConfigurations
                 .HasForeignKey(h => h.PurposeId);
 
             builder.HasMany(h => h.Notes)
-                .WithOne(n => n.Hardware);
+                .WithOne(n => n.Hardware)
+                .HasForeignKey(n => n.HardwareId);
 
             builder.HasMany(h => h.AssignmentHistory)
                 .WithOne(a => a.Hardware);

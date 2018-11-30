@@ -81,7 +81,6 @@ ul.list-inline{
   }
 }
 
-
 /*           Animations              */
 .animation-transition-general{
     @include transition($general-transition-time, $transition-linear);
@@ -152,7 +151,7 @@ datetime .form-group{
 		> i{
 			font-size: 2.28rem;
       &.fa{
-			  font-size: 2.28rem !important;        
+			  font-size: 2.28rem !important;
       }
 			transition: all .2s ease-in-out;
 		}
@@ -160,7 +159,7 @@ datetime .form-group{
 			width: 100px;
 		}
 	}
-	&:hover{		
+	&:hover{
 		i{
 			color: theme-color('info');
 			font-size: 2.9rem;
@@ -248,7 +247,6 @@ datetime .form-group{
   }
 }
 
-
 // Checkbox css
 .custom-control-input:active ~ .custom-control-indicator {
   background-color: theme-color('primary');
@@ -290,7 +288,7 @@ datetime .form-group{
   white-space: nowrap;
   border-radius: 1000px;
   vertical-align: bottom;
-  
+
   img{
     width: 100%;
     max-width: 100%;

@@ -322,7 +322,6 @@
                 }
                 > a{
                     background: rgba(200, 200, 200, 0.2);
-
                 }
             }
 
@@ -358,8 +357,8 @@
                     background: #FFFFFF;
                 }
             }
-            
-            // Badge 
+
+            // Badge
             a{
                 position: relative;
                 span.badge{
@@ -367,7 +366,7 @@
                     right: 3rem;
                 }
             }
-            
+
             > a{
                 display: block;
                 overflow: hidden;
@@ -423,7 +422,7 @@
                 background: #FFFFFF;
             }
         }
-        
+
         .menu-title{
             margin: 0;
             font-size: 0.95rem;
@@ -502,7 +501,6 @@
             color: $black;
             text-align: left;
             font-weight: 400;
-
         }
     }
 
@@ -586,7 +584,6 @@
         @include set-gradient-background-color(#fc00ff, #00dbde);
     }
 
-
     // Menu anchor colors
     &[data-background-color="white"]{
         @include set-anchor-color($black);
@@ -606,7 +603,7 @@
     // User settings text color
     &[data-background-color="white"]{
         @include set-user-settings-text-color($black);
-    }    
+    }
 
     &[data-color="blue"]{
         @include set-background-color-button(theme-color("info"));

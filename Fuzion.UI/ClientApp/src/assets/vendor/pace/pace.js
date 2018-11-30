@@ -199,7 +199,6 @@
     };
 
     return Evented;
-
   })();
 
   Pace = window.Pace || {};
@@ -227,7 +226,6 @@
     }
 
     return NoTargetError;
-
   })(Error);
 
   Bar = (function() {
@@ -309,7 +307,6 @@
     };
 
     return Bar;
-
   })();
 
   Events = (function() {
@@ -339,7 +336,6 @@
     };
 
     return Events;
-
   })();
 
   _XMLHttpRequest = window.XMLHttpRequest;
@@ -479,7 +475,6 @@
     }
 
     return RequestIntercept;
-
   })(Events);
 
   _intercept = null;
@@ -571,7 +566,6 @@
     };
 
     return AjaxMonitor;
-
   })();
 
   XHRRequestTracker = (function() {
@@ -610,7 +604,6 @@
     }
 
     return XHRRequestTracker;
-
   })();
 
   SocketRequestTracker = (function() {
@@ -628,7 +621,6 @@
     }
 
     return SocketRequestTracker;
-
   })();
 
   ElementMonitor = (function() {
@@ -649,7 +641,6 @@
     }
 
     return ElementMonitor;
-
   })();
 
   ElementTracker = (function() {
@@ -675,7 +666,6 @@
     };
 
     return ElementTracker;
-
   })();
 
   DocumentMonitor = (function() {
@@ -699,7 +689,6 @@
     }
 
     return DocumentMonitor;
-
   })();
 
   EventLagMonitor = (function() {
@@ -730,7 +719,6 @@
     }
 
     return EventLagMonitor;
-
   })();
 
   Scaler = (function() {
@@ -776,7 +764,6 @@
     };
 
     return Scaler;
-
   })();
 
   sources = null;
@@ -931,5 +918,4 @@
       Pace.start();
     }
   }
-
 }).call(this);

@@ -44,5 +44,15 @@ export interface IList {
   name: string;
 }
 
+export interface INote {
+  id?: number;
+  hardwareId?: number;
+  body: string;
+  createdBy: string;
+  createdOn: Date;
+}
 
-
+export interface INoteResponse {
+  status: boolean;
+  note: INote;
+}

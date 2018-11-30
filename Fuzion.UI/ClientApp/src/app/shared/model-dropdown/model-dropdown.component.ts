@@ -17,7 +17,6 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class ModelDropdownComponent implements OnInit {
-    
     @Input() inputModel: any;
 
     modelList: IList[];

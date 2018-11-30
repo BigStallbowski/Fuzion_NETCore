@@ -33,14 +33,13 @@
     &:hover{
         z-index: 0;
     }
-    &.active, 
+    &.active,
     &.active:focus,
     &.active:hover{
         background-color: theme-color("primary");
         border-color: theme-color("primary");
     }
 }
-
 
 // Labels
 .label{

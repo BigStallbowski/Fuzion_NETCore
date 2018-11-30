@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Fuzion.UI.Core.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
 
 namespace Fuzion.UI.Persistence.Interfaces
 {

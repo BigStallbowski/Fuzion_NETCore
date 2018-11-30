@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Fuzion.UI.Core;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core;
 
 namespace Fuzion.UI.Persistence.Extensions
 {

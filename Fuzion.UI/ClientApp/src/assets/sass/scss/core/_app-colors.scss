@@ -389,7 +389,6 @@ $blue-grey: (
   "accent-4":   #455a64
 );
 
-
 $shades: (
   "black":        #000000,
   "white":        #FFFFFF,
@@ -577,7 +576,6 @@ $gradient-colors: (
       'end-color' : map-get($indigo, darken-1 ),
   ),
 
-
   gradient-aqua-marine: (
     'start-color' : #1488cc,
       'end-color' : #2b32b2,
@@ -624,10 +622,6 @@ $gradient-colors: (
     'start-color' : #8137F7,
       'end-color' : #F6AB3E,
   ),
-  
-
-
-
 
   gradient-sublime-vivid: (
     'start-color' : #fc466b,
@@ -733,5 +727,5 @@ $gradient-colors: (
       'start-color' : #cc2b5e,
         'end-color' : #753a88,
   )
-  
+
 );

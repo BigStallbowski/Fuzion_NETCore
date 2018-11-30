@@ -17,7 +17,6 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class HardwareTypeDropdownComponent implements OnInit {
-    
     @Input() inputModel: any;
 
     hardwareTypeList: IList[];

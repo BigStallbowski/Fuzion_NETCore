@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
 {
@@ -49,7 +49,7 @@ namespace Fuzion.UI.Apis
         public async Task<ActionResult> CreateHardware([FromBody] Hardware hardware)
         {
             await _uow.Hardware.CreateHardware(hardware);
-            return CreatedAtRoute("GetHardwareById", new {id = hardware.Id}, hardware);
+            return CreatedAtRoute("GetHardwareById", new { id = hardware.Id }, hardware);
         }
 
         [HttpPut("{id}")]
@@ -68,7 +68,7 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.Hardware.UpdateHardware(hardwareToUpdate);
-            return CreatedAtRoute("GetHardwareById", new {id = hardware.Id}, hardware);
+            return CreatedAtRoute("GetHardwareById", new { id = hardware.Id }, hardware);
         }
 
         [HttpPut("{id}/assign")]
@@ -90,7 +90,7 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.Hardware.AssignHardware(hardwareToAssign);
-            return CreatedAtRoute("GetHardwareById", new {id = hardwareToAssign.Id, hardwareToAssign});
+            return CreatedAtRoute("GetHardwareById", new { id = hardwareToAssign.Id, hardwareToAssign });
         }
 
         [HttpDelete("{id}")]

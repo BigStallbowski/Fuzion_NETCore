@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Fuzion.UI.Core.Context;
+﻿using Fuzion.UI.Core.Context;
 using Fuzion.UI.Core.Models;
 using Fuzion.UI.Persistence.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fuzion.UI.Persistence.Repositories
 {

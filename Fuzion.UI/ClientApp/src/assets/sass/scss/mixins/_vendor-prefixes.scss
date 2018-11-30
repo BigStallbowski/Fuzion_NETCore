@@ -20,7 +20,6 @@
           box-sizing: $boxmodel;
 }
 
-
 @mixin transition($time, $type){
     -webkit-transition: all $time $type;
     -moz-transition: all $time $type;
