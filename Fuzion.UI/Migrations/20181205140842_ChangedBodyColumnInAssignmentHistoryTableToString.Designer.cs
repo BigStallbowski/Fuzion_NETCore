@@ -4,14 +4,16 @@ using Fuzion.UI.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fuzion.UI.Migrations
 {
     [DbContext(typeof(FuzionDbContext))]
-    partial class FuzionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181205140842_ChangedBodyColumnInAssignmentHistoryTableToString")]
+    partial class ChangedBodyColumnInAssignmentHistoryTableToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

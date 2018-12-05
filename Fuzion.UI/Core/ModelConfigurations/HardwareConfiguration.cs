@@ -58,7 +58,8 @@ namespace Fuzion.UI.Core.ModelConfigurations
                 .HasForeignKey(n => n.HardwareId);
 
             builder.HasMany(h => h.AssignmentHistory)
-                .WithOne(a => a.Hardware);
+                .WithOne(a => a.Hardware)
+                .HasForeignKey(h => h.HardwareId);
         }
     }
 }

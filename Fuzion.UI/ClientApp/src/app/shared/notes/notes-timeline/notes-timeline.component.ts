@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { DataService } from '../../../core/data.service';
 import { ToastrService } from '../../../core/toastr.service';
-import { INote } from '../../interfaces/interfaces';
+import { IHardwareAdditionalInfo } from '../../interfaces/interfaces';
 
 @Component({
     selector: 'notes-timeline',
@@ -10,9 +10,9 @@ import { INote } from '../../interfaces/interfaces';
 })
 
 export class NotesTimelineComponent implements OnInit {
-    @Input() notes: INote[] = [];
+    @Input() notes: IHardwareAdditionalInfo[] = [];
 
-    note: INote = {
+    note: IHardwareAdditionalInfo = {
         body: '',
         createdBy: '',
         createdOn: null

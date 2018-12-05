@@ -4,14 +4,16 @@ using Fuzion.UI.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fuzion.UI.Migrations
 {
     [DbContext(typeof(FuzionDbContext))]
-    partial class FuzionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181204155653_AddedHardareIdNavigationPropertyToAssignmentHistoryTable")]
+    partial class AddedHardareIdNavigationPropertyToAssignmentHistoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,8 +27,7 @@ namespace Fuzion.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Body")
-                        .IsRequired()
+                    b.Property<int>("Body")
                         .HasMaxLength(1055);
 
                     b.Property<string>("CreatedBy");

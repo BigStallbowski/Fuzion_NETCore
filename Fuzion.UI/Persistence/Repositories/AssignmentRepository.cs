@@ -22,5 +22,11 @@ namespace Fuzion.UI.Persistence.Repositories
                 .Where(x => x.Hardware.Id == hardwareId)
                 .ToListAsync();
         }
+
+        public async Task CreateAssignmentHistory(AssignmentHistory assignmentHistory)
+        {
+            Create(assignmentHistory);
+            await SaveAsync();
+        }
     }
 }

@@ -1,0 +1,44 @@
+[
+    {
+        "id": 0,
+        "name": "Ramsey Cummings",
+        "department": "Human Resources",
+        "phone": "555-555-5555",
+        "email": "rcummings@company.com"
+    },
+    {
+        "id": 1,
+        "name": "Stefanie Huff",
+        "department": "Information Technology",
+        "phone": "555-555-5555",
+        "email": "shuff@company.com"
+    },
+    {
+        "id": 2,
+        "name": "Mabel David",
+        "department": "Engineering",
+        "phone": "555-555-5555",
+        "email": "mdavid@company.com"
+    },
+    {
+        "id": 3,
+        "name": "Frank Bradford",
+        "department": "Information Technology",
+        "phone": "555-555-5555",
+        "email": "shuff@company.com"
+    },
+    {
+        "id": 4,
+        "name": "Forbes Levine",
+        "department": "Sales",
+        "phone": "555-555-5555",
+        "email": "flevine@company.com"
+    },
+    {
+        "id": 5,
+        "name": "Santiago Mcclain",
+        "department": "Information Technology",
+        "phone": "555-555-5555",
+        "email": "smcclain@company.com"
+    }   
+]

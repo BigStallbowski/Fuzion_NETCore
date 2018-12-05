@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { IHardware, IHardwareCounts, IHardwareResponse, IList, INote, INoteResponse } from '../shared/interfaces/interfaces';
+import { IHardware, IHardwareCounts, IHardwareResponse, IList, IHardwareAdditionalInfo, IHardwareAdditionalInfoResponse } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 import { HardwareModule } from '../hardware/hardware.module';
 
@@ -92,8 +92,18 @@ export class DataService {
       );
   }
 
-  getHardwareNotes(id: number): Observable<INote[]> {
-    return this.http.get<INote[]>(this.baseUrl + 'notes/' + id)
+  getHardwareAssignmentHistory(id: number): Observable<IHardwareAdditionalInfo[]> {
+    return this.http.get<IHardwareAdditionalInfo[]>(this.baseUrl + 'assignmenthistory/' + id)
+      .pipe(
+        map(assignmentHistoryList => {
+          return assignmentHistoryList;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getHardwareNotes(id: number): Observable<IHardwareAdditionalInfo[]> {
+    return this.http.get<IHardwareAdditionalInfo[]>(this.baseUrl + 'notes/' + id)
       .pipe(
         map(noteList => {
           return noteList;
@@ -122,12 +132,23 @@ export class DataService {
       );
   }
 
-  insertNote(note: INote) : Observable<INote> {
-    return this.http.post<INoteResponse>(this.baseUrl + 'notes', note)
+  insertNote(note: IHardwareAdditionalInfo): Observable<IHardwareAdditionalInfo> {
+    return this.http.post<IHardwareAdditionalInfoResponse>(this.baseUrl + 'notes', note)
       .pipe(
         map(data => {
-          console.log('inserNote Status: ' + data.status);
-          return data.note;
+          console.log('insertNote Status: ' + data.status);
+          return data.object;
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  unassignHardware(hardware: IHardware) : Observable<IHardware> {
+    return this.http.put<IHardwareResponse>(this.baseUrl + 'hardware/' + hardware.id + '/unassign', hardware)
+      .pipe(
+        map((data) => {
+          console.log('unassignHardware status: ' + data.status);
+          return data.hardware
         }),
         catchError(this.handleError)
       );

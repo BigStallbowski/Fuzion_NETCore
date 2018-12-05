@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
 import { ToastrService } from '../../core/toastr.service';
-import { INote } from '../../shared/interfaces/interfaces';
+import { IHardwareAdditionalInfo } from '../../shared/interfaces/interfaces';
 
 @Component({
     selector: 'notes',
@@ -10,10 +10,10 @@ import { INote } from '../../shared/interfaces/interfaces';
 })
 
 export class NotesComponent implements OnInit {
-    notes: INote[] = [];
+    notes: IHardwareAdditionalInfo[] = [];
     @Input() hardwareId: number;
 
-    note: INote = {
+    note: IHardwareAdditionalInfo = {
         body: '',
         createdBy: '',
         createdOn: null
@@ -28,7 +28,7 @@ export class NotesComponent implements OnInit {
     addNote() {
         this.note.hardwareId = this.hardwareId;
         this.dataService.insertNote(this.note)
-            .subscribe((note: INote) => {
+            .subscribe((note: IHardwareAdditionalInfo) => {
                 this.toastr.success('Note Added', 'Success');
                 this.getHardwareNotes(this.hardwareId);
             },
@@ -40,7 +40,7 @@ export class NotesComponent implements OnInit {
 
     getHardwareNotes(id: number) {
         this.dataService.getHardwareNotes(id)
-            .subscribe((notes: INote[]) =>
+            .subscribe((notes: IHardwareAdditionalInfo[]) =>
             this.notes = notes);
     }
 }

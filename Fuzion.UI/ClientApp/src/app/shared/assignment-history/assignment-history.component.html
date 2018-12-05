@@ -1,0 +1,17 @@
+<div class="col-12 timeline-left" id="activity">
+    <div class="timeline">
+      <ul class="list-unstyled base-timeline activity-timeline" style="margin-left: 0px; margin-top: 25px;">
+        <li *ngFor="let assignmentHistory of assignmentHistoryList" class="">
+          <div class="timeline-icon bg-info">
+            <i class="ft-user"></i>
+          </div>
+          <div class="base-timeline-info">
+            <span class="text-uppercase">{{ assignmentHistory.body }}</span>
+          </div>
+          <small class="text-muted">
+            {{ assignmentHistory.createdBy }} - {{ assignmentHistory.createdOn }}
+          </small>
+        </li>
+      </ul>
+    </div>
+  </div> 

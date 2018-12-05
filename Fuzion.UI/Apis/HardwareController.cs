@@ -90,7 +90,45 @@ namespace Fuzion.UI.Apis
             }
 
             await _uow.Hardware.AssignHardware(hardwareToAssign);
+
+            var assignmentHistory = new AssignmentHistory
+            {
+                HardwareId = hardwareToAssign.Id,
+                Body = $"Assigned To: {hardwareToAssign.AssignedTo}"
+            };
+            await _uow.AssignmentHistory.CreateAssignmentHistory(assignmentHistory);
+
             return CreatedAtRoute("GetHardwareById", new { id = hardwareToAssign.Id, hardwareToAssign });
+        }
+
+        [HttpPut("{id}/unassign")]
+        public async Task<ActionResult> UnassignHardware([FromBody] Hardware hardwareToUnassign)
+        {
+            if (hardwareToUnassign.IsObjectNull())
+            {
+                return BadRequest("Object is null");
+            }
+            if (string.IsNullOrEmpty(hardwareToUnassign.AssignedTo))
+            {
+                return BadRequest("Assigned To Field Required");
+            }
+
+            var hardware = await _uow.Hardware.GetHardwareById(hardwareToUnassign.Id);
+            if (hardware.IsEmptyObject())
+            {
+                return NotFound();
+            }
+
+            await _uow.Hardware.UnassignHardware(hardwareToUnassign);
+
+            var assignmentHistory = new AssignmentHistory
+            {
+                HardwareId = hardwareToUnassign.Id,
+                Body = "Unassigned"
+            };
+            await _uow.AssignmentHistory.CreateAssignmentHistory(assignmentHistory);
+
+            return CreatedAtRoute("GetHardwareById", new { id = hardwareToUnassign.Id, hardwareToUnassign });
         }
 
         [HttpDelete("{id}")]

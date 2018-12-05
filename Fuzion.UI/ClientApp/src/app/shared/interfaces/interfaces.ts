@@ -44,7 +44,7 @@ export interface IList {
   name: string;
 }
 
-export interface INote {
+export interface IHardwareAdditionalInfo {
   id?: number;
   hardwareId?: number;
   body: string;
@@ -52,7 +52,7 @@ export interface INote {
   createdOn: Date;
 }
 
-export interface INoteResponse {
+export interface IHardwareAdditionalInfoResponse {
   status: boolean;
-  note: INote;
+  object: IHardwareAdditionalInfo;
 }

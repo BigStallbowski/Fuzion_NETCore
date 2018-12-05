@@ -4,19 +4,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../../core/data.service';
 import { ToastrService } from '../../core/toastr.service';
-import { IHardware, INote } from '../../shared/interfaces/interfaces';
+import { IHardware, IHardwareAdditionalInfo } from '../../shared/interfaces/interfaces';
 
 @Component({
     selector: 'assign-hardware',
     templateUrl: './assign-hardware.component.html',
-    styles: [
-        `
-        .form-control.ng-select {
-            padding: 0;
-            border: none;
-          }
-        `
-    ],
+    styleUrls: ['./assign-hardware.component.css'],
     animations: [
         trigger('fadeInOut', [
             state('void', style({
@@ -47,8 +40,14 @@ export class AssignHardwareComponent implements OnInit {
         isRetired: 0
     };
 
+    assignmentHistory: IHardwareAdditionalInfo = {
+        body: '',
+        createdBy: '',
+        createdOn: null
+    };
+
     hardwareList: IHardware[];
-    noteList: INote[];
+    noteList: IHardwareAdditionalInfo[];
 
     showHardwareInfo: boolean;
     showUnassign: boolean;
@@ -114,13 +113,25 @@ export class AssignHardwareComponent implements OnInit {
     }
 
     submit() {
-            this.dataService.assignHardware(this.hardware)
-                .subscribe((hardware: IHardware) => {
-                    this.toastr.success('Device assigned', 'Success');
-                },
-                (err: any) => {
-                    console.log(err);
-                    this.toastr.error(err, 'Error');
-                });
+             this.dataService.assignHardware(this.hardware)
+                 .subscribe((hardware: IHardware) => {
+                     this.toastr.success('Device assigned', 'Success');
+                 },
+                 (err: any) => {
+                     console.log(err);
+                     this.toastr.error(err, 'Error');
+                 });
+    }
+
+    unassignHardware() {
+        event.preventDefault();
+        this.dataService.unassignHardware(this.hardware)
+            .subscribe((hardware: IHardware) => {
+                this.toastr.success('Device unassigned', 'Success');
+            },
+            (err: any) => {
+                console.log(err);
+                this.toastr.error(err, 'Error');
+            });
     }
 }

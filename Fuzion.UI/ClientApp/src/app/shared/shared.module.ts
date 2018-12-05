@@ -8,6 +8,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AssignmentHistoryComponent } from './assignment-history/assignment-history.component';
 import { HardwareTypeDropdownComponent } from './hardware-type-dropdown/hardware-type-dropdown.component';
 import { ManufacturerDropdownComponent } from './manufacturer-dropdown/manufacturer-dropdown.component';
 import { ModelDropdownComponent } from './model-dropdown/model-dropdown.component';
@@ -20,6 +21,7 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
   exports: [
     NavbarComponent,
     SidebarComponent,
+    AssignmentHistoryComponent,
     HardwareTypeDropdownComponent,
     ManufacturerDropdownComponent,
     ModelDropdownComponent,
@@ -39,6 +41,7 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
   declarations: [
     NavbarComponent,
     SidebarComponent,
+    AssignmentHistoryComponent,
     HardwareTypeDropdownComponent,
     ManufacturerDropdownComponent,
     ModelDropdownComponent,
