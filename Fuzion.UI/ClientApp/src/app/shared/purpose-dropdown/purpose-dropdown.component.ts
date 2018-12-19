@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
-import { IList } from '../interfaces/interfaces';
+import { IHardware, IList } from '../interfaces/interfaces';
 
 @Component({
     selector: 'purposes',
@@ -17,7 +17,8 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class PurposeDropdownComponent implements OnInit {
-    @Input() inputModel: any;
+    @Input() inputModel: IHardware;
+    @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
 
     purposeList: IList[];
 
@@ -25,6 +26,10 @@ export class PurposeDropdownComponent implements OnInit {
 
     ngOnInit() {
         this.getPurposeList();
+    }
+
+    onPurposeChange($event) {
+        this.outputModel.emit($event.id);
     }
 
     getPurposeList() {

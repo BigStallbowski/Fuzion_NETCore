@@ -1,5 +1,4 @@
-﻿using Fuzion.UI.Core.ModelConfigurations;
-using Fuzion.UI.Core.Models;
+﻿using Fuzion.UI.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -22,18 +21,6 @@ namespace Fuzion.UI.Core.Context
         public DbSet<Purpose> Purposes { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<AssignmentHistory> AssignmentHistory { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new HardwareConfiguration());
-            modelBuilder.ApplyConfiguration(new HardwareTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new ManufacturerConfiguration());
-            modelBuilder.ApplyConfiguration(new ModelConfiguration());
-            modelBuilder.ApplyConfiguration(new OSConfiguration());
-            modelBuilder.ApplyConfiguration(new PurposeConfiguration());
-            modelBuilder.ApplyConfiguration(new NoteConfiguration());
-            modelBuilder.ApplyConfiguration(new AssignmentHistoryConfiguration());
-        }
 
         public override int SaveChanges()
         {

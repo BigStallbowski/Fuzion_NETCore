@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
-import { IList } from '../interfaces/interfaces';
+import { IList, IHardware } from '../interfaces/interfaces';
 
 @Component({
     selector: 'manufacturers',
@@ -17,7 +17,8 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class ManufacturerDropdownComponent implements OnInit {
-    @Input() inputModel: any;
+    @Input() inputModel: IHardware;
+    @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
 
     manufacturerList: IList[];
 
@@ -25,6 +26,10 @@ export class ManufacturerDropdownComponent implements OnInit {
 
     ngOnInit() {
         this.getManufacturerList();
+    }
+
+    onManufacturerChange($event) {
+        this.outputModel.emit($event.id);
     }
 
     getManufacturerList() {

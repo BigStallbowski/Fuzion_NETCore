@@ -2,11 +2,11 @@
         <form (ngSubmit)="addNote()" #addNoteForm="ngForm" class="chat-app-input mt-4 row" novalidate>
             <fieldset class="form-group position-relative col-xl-10 col-lg-8 col-8 m-0 mb-1">
               <input type="text" class="form-control" [(ngModel)]="note.body" name="body" #body="ngModel" placeholder="Add A Note" required>
-              <small class="form-text text-muted danger" [hidden]="body.valid">A note is required</small>
+              <small class="form-text text-muted danger" [hidden]="body.untouched || body.valid">A note is required</small>
             </fieldset>
             <fieldset class="form-group position-relative has-icon-left col-2 m-0">
               <button type="submit" class="btn btn-primary" [disabled]="!addNoteForm.valid"><i class="fa fa-paper-plane white"></i> </button>
             </fieldset>
         </form>
 </div>
-<notes-timeline [notes]="notes"></notes-timeline>
+<notes-timeline [(notes)]="notes"></notes-timeline>

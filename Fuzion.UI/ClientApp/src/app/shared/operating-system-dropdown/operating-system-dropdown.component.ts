@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
-import { IList } from '../interfaces/interfaces';
+import { IHardware, IList } from '../interfaces/interfaces';
 
 @Component({
     selector: 'operating-systems',
@@ -17,7 +17,8 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class OperatingSystemDropdownComponent implements OnInit {
-    @Input() inputModel: any;
+    @Input() inputModel: IHardware;
+    @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
 
     operatingSystemList: IList[];
 
@@ -25,6 +26,11 @@ export class OperatingSystemDropdownComponent implements OnInit {
 
     ngOnInit() {
         this.getOperatingSystemList();
+    }
+
+    onOperatingSystemChange($event)
+    {
+        this.outputModel.emit($event.id);
     }
 
     getOperatingSystemList() {

@@ -3,9 +3,10 @@
   bindLabel="name"
   bindValue="id"
   [(ngModel)]="inputModel"
-  #hardwareType="ngModel"
+  #hardwareTypeId="ngModel"
+  (change)="onHardwareTypeChange($event)"
   name="hardwareTypeId"
   class="form-control"
   required>
 </ng-select>
-<small class="form-text text-muted danger" [hidden]="hardwareType.valid">Hardware Type Is Required</small>
+<small class="form-text text-muted danger" [hidden]="hardwareTypeId.untouched || hardwareTypeId.valid">Hardware Type Is Required</small>

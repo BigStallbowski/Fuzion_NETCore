@@ -6,6 +6,7 @@
   #operatingSystem="ngModel"
   name="osId"
   class="form-control"
+  (change)="onOperatingSystemChange($event)"
   required>
 </ng-select>
-<small class="form-text text-muted danger" [hidden]="operatingSystem.valid">Operating System Is Required</small>
+<small class="form-text text-muted danger" [hidden]="operatingSystem.untouched || operatingSystem.valid">Operating System Is Required</small>

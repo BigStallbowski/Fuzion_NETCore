@@ -19,10 +19,10 @@ namespace Fuzion.UI.Core.Models
         public int ModelId { get; set; }
         public Model Model { get; set; }
 
-        public int OSId { get; set; }
+        public int? OSId { get; set; }
         public OS OS { get; set; }
 
-        public int PurposeId { get; set; }
+        public int? PurposeId { get; set; }
         public Purpose Purpose { get; set; }
 
         public List<Note> Notes { get; set; }

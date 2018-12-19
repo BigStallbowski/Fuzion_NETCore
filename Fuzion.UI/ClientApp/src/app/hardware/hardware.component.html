@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title-wrap bar-primary">
+          <h4 class="card-title">{{formTitle}}</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form (ngSubmit)="submit()" #hardwareForm="ngForm" class="form" novalidate>
+            <div class='form-body'>
+              <div *ngIf="assetNumberText" class="form-group">
+                <label>Asset Number</label>
+                <input type="text" class="form-control" [(ngModel)]="hardware.assetNumber" [readOnly]="assetNumberInputReadOnly" name="assetMumber" #assetNumber="ngModel" required>
+                <small class="form-text text-muted danger" [hidden]="assetNumber.untouched || assetNumber.valid">Asset Number Is Required</small>
+              </div>
+              <div *ngIf="!assetNumberText" class="form-group">
+                <label>Asset Number</label>
+                <ng-select [items]="hardwareList"
+                           bindLabel="assetNumber"
+                           bindValue="id"
+                           [(ngModel)]="hardware.id"
+                           name="assetNumber"
+                           #assetNumber="ngModel"
+                           class="form-control"
+                           (change)="onHardwareChange($event)"
+                           required>
+                </ng-select>
+                <small class="form-text text-muted danger" [hidden]="assetNumber.valid">Asset Number Is Required</small>
+              </div>
+              <div *ngIf="showHardwareInfo" class="hardware-info" [@fadeInOut]>
+                <div class="form-group">
+                  <hardware-types [(inputModel)]="hardware.hardwareTypeId" (outputModel)="onHardwareTypeChange($event)"></hardware-types>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Serial Number</label>
+                      <input type="text" class="form-control" [(ngModel)]="hardware.serialNumber" name="serialNumber" #serialNumber="ngModel" required>
+                      <small class="form-text text-muted danger" [hidden]="serialNumber.untouched || serialNumber.valid">Serial Number Is Required</small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <manufacturers [(inputModel)]="hardware.manufacturerId" (outputModel)="onManufacturerChange($event)"></manufacturers>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <models [(inputModel)]="hardware.modelId" (outputModel)="onModelChange($event)"></models>
+                </div>
+                <div class="form-group">
+                  <operating-systems [(inputModel)]="hardware.osId" (outputModel)="onOperatingSystemChange($event)"></operating-systems>
+                </div> 
+              </div>
+              <div *ngIf="hardware.isAssigned == 1" class="user-info" [@fadeInOut]>
+                <div class="form-group">
+                  <purposes [(inputModel)]="hardware.purposeId" (outputModel)="onPurposeChange($event)"></purposes>
+                </div>
+                <div class="form-group">
+                  <label>Assigned To</label>
+                  <input type="text" class="form-control readonly" [(ngModel)]="hardware.assignedTo" #assignedTo="ngModel" name="assignedTo" readonly>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Department</label>
+                      <input type="text" class="form-control readonly" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control readonly" readonly>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control readonly" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-raised btn-warning mr-1" (click)="cancel($event)">
+                <i class="icon-ban"></i> Cancel
+              </button>
+              <button *ngIf="hardware.isAssigned == 0" class="btn btn-raised btn-primary mr-1" (click)="openAssignModal()">
+                <i class="icon-lock-open"></i> Assign
+              </button>
+              <button *ngIf="hardware.isAssigned == 1" class="btn btn-raised btn-primary mr-1" (click)="unassignHardware($event)">
+                <i class="icon-lock-open"></i> Unassign
+              </button>
+              <button type="submit" class="btn btn-raised btn-success" [disabled]="!hardwareForm.valid">
+                <i class="icon-note"></i> Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div *ngIf="showAdditionalHardwareInfo" class="hardware-info" [@fadeInOut]>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-primary">
+            <h4 class="card-title">Additional Information</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <ngb-tabset type="pills">
+              <ngb-tab title="Notes">
+                <ng-template ngbTabContent>
+                  <notes [(hardwareId)]="hardware.id"></notes>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Assignment History">
+                <ng-template ngbTabContent>
+                  <assignment-history [hardwareId]="hardware.id"></assignment-history>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Warranty Information">
+                <ng-template ngbTabContent>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

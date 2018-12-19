@@ -6,6 +6,7 @@
   #model="ngModel"
   name="modelId"
   class="form-control"
+  (change)="onModelChange($event)"
   required>
 </ng-select>
-<small class="form-text text-muted danger" [hidden]="model.valid">Model Is Required</small>
+<small class="form-text text-muted danger" [hidden]="model.untouched || model.valid">Model Is Required</small>

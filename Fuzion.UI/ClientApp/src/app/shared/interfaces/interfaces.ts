@@ -2,8 +2,8 @@ import { ModuleWithProviders } from '@angular/core';
 
 export interface IHardware {
   id?: number;
-  assetNumber: string;
-  serialNumber: string;
+  assetNumber?: string;
+  serialNumber?: string;
   assignedTo?: string;
   hardwareType?: number;
   hardwareTypeId?: number;
@@ -36,7 +36,7 @@ export interface IHardwareCounts {
 
 export interface IHardwareResponse {
   status: boolean;
-  hardware: IHardware;
+  model: IHardware;
 }
 
 export interface IList {

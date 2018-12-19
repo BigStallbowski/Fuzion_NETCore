@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
-import { IList } from '../interfaces/interfaces';
+import { IHardware, IList } from '../interfaces/interfaces';
 
 @Component({
     selector: 'models',
@@ -17,7 +17,8 @@ import { IList } from '../interfaces/interfaces';
 })
 
 export class ModelDropdownComponent implements OnInit {
-    @Input() inputModel: any;
+    @Input() inputModel: IHardware;
+    @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
 
     modelList: IList[];
 
@@ -25,6 +26,10 @@ export class ModelDropdownComponent implements OnInit {
 
     ngOnInit() {
         this.getModelList();
+    }
+
+    onModelChange($event) {
+        this.outputModel.emit($event.id);
     }
 
     getModelList() {

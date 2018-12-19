@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace Fuzion.UI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,13 +12,13 @@ namespace Fuzion.UI.Migrations
                 name: "HardwareTypes",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 25, nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,13 +29,13 @@ namespace Fuzion.UI.Migrations
                 name: "Manufacturers",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 55, nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,33 +43,16 @@ namespace Fuzion.UI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Models",
-                columns: table => new
-                {
-                    CreatedBy = table.Column<string>(nullable: true),
-                    LastModifiedBy = table.Column<string>(nullable: true),
-                    CreatedOn = table.Column<DateTime>(nullable: true),
-                    LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 55, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Models", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OS",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 55, nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,13 +63,13 @@ namespace Fuzion.UI.Migrations
                 name: "Purposes",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 55, nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,20 +77,44 @@ namespace Fuzion.UI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hardware",
+                name: "Models",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    ManufacturerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Models", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Models_Manufacturers_ManufacturerId",
+                        column: x => x.ManufacturerId,
+                        principalTable: "Manufacturers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hardware",
+                columns: table => new
+                {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AssetNumber = table.Column<string>(maxLength: 5, nullable: false),
-                    SerialNumber = table.Column<string>(maxLength: 25, nullable: false),
-                    IsAssigned = table.Column<byte>(nullable: false, defaultValue: (byte)0),
-                    IsRetired = table.Column<byte>(nullable: false, defaultValue: (byte)0),
-                    AssignedTo = table.Column<string>(maxLength: 55, nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    LastModifiedBy = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(nullable: true),
+                    AssetNumber = table.Column<string>(nullable: true),
+                    SerialNumber = table.Column<string>(nullable: true),
+                    IsAssigned = table.Column<byte>(nullable: false),
+                    IsRetired = table.Column<byte>(nullable: false),
+                    AssignedTo = table.Column<string>(nullable: true),
                     HardwareTypeId = table.Column<int>(nullable: false),
                     ManufacturerId = table.Column<int>(nullable: false),
                     ModelId = table.Column<int>(nullable: false),
@@ -134,7 +141,7 @@ namespace Fuzion.UI.Migrations
                         column: x => x.ModelId,
                         principalTable: "Models",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Hardware_OS_OSId",
                         column: x => x.OSId,
@@ -153,14 +160,14 @@ namespace Fuzion.UI.Migrations
                 name: "AssignmentHistory",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Body = table.Column<int>(maxLength: 1055, nullable: false),
-                    HardwareId = table.Column<int>(nullable: true)
+                    Body = table.Column<string>(nullable: true),
+                    HardwareId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,21 +177,21 @@ namespace Fuzion.UI.Migrations
                         column: x => x.HardwareId,
                         principalTable: "Hardware",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Notes",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(nullable: true),
                     LastModifiedBy = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
                     LastModifiedOn = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Body = table.Column<string>(maxLength: 1055, nullable: false),
-                    HardwareId = table.Column<int>(nullable: true)
+                    Body = table.Column<string>(nullable: true),
+                    HardwareId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -194,7 +201,7 @@ namespace Fuzion.UI.Migrations
                         column: x => x.HardwareId,
                         principalTable: "Hardware",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -228,6 +235,11 @@ namespace Fuzion.UI.Migrations
                 column: "PurposeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Models_ManufacturerId",
+                table: "Models",
+                column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notes_HardwareId",
                 table: "Notes",
                 column: "HardwareId");
@@ -248,9 +260,6 @@ namespace Fuzion.UI.Migrations
                 name: "HardwareTypes");
 
             migrationBuilder.DropTable(
-                name: "Manufacturers");
-
-            migrationBuilder.DropTable(
                 name: "Models");
 
             migrationBuilder.DropTable(
@@ -258,6 +267,9 @@ namespace Fuzion.UI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Purposes");
+
+            migrationBuilder.DropTable(
+                name: "Manufacturers");
         }
     }
 }

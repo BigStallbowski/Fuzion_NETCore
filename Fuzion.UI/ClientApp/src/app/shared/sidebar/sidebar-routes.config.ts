@@ -8,11 +8,11 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/hardware/assign', title: 'Assign Device', icon: 'ft-user-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
+    path: '/hardware', title: 'Assign Device', icon: 'ft-user-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
     submenu: []
   },
   {
-    path: '/adddevice', title: 'Add Device', icon: 'ft-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
+    path: '/hardware/add', title: 'Add Device', icon: 'ft-plus', class: '', badge: '2', badgeClass: '', isExternalLink: false,
     submenu: []
   },
   {

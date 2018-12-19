@@ -25,9 +25,7 @@ namespace Fuzion.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasMaxLength(1055);
+                    b.Property<string>("Body");
 
                     b.Property<string>("CreatedBy");
 
@@ -52,12 +50,9 @@ namespace Fuzion.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AssetNumber")
-                        .IsRequired()
-                        .HasMaxLength(5);
+                    b.Property<string>("AssetNumber");
 
-                    b.Property<string>("AssignedTo")
-                        .HasMaxLength(55);
+                    b.Property<string>("AssignedTo");
 
                     b.Property<string>("CreatedBy");
 
@@ -65,13 +60,9 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<int>("HardwareTypeId");
 
-                    b.Property<byte>("IsAssigned")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue((byte)0);
+                    b.Property<byte>("IsAssigned");
 
-                    b.Property<byte>("IsRetired")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue((byte)0);
+                    b.Property<byte>("IsRetired");
 
                     b.Property<string>("LastModifiedBy");
 
@@ -81,18 +72,13 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<int>("ModelId");
 
-                    b.Property<int>("OSId");
+                    b.Property<int?>("OSId");
 
-                    b.Property<int>("PurposeId");
+                    b.Property<int?>("PurposeId");
 
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasMaxLength(25);
+                    b.Property<string>("SerialNumber");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssetNumber")
-                        .IsUnique();
 
                     b.HasIndex("HardwareTypeId");
 
@@ -121,14 +107,9 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<DateTime?>("LastModifiedOn");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(25);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("HardwareTypes");
                 });
@@ -147,14 +128,9 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<DateTime?>("LastModifiedOn");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(55);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Manufacturers");
                 });
@@ -175,16 +151,11 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<int>("ManufacturerId");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(55);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ManufacturerId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Models");
                 });
@@ -195,9 +166,7 @@ namespace Fuzion.UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasMaxLength(1055);
+                    b.Property<string>("Body");
 
                     b.Property<string>("CreatedBy");
 
@@ -230,14 +199,9 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<DateTime?>("LastModifiedOn");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(55);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("OS");
                 });
@@ -256,14 +220,9 @@ namespace Fuzion.UI.Migrations
 
                     b.Property<DateTime?>("LastModifiedOn");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(55);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Purposes");
                 });
@@ -295,13 +254,11 @@ namespace Fuzion.UI.Migrations
 
                     b.HasOne("Fuzion.UI.Core.Models.OS", "OS")
                         .WithMany("Hardware")
-                        .HasForeignKey("OSId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OSId");
 
                     b.HasOne("Fuzion.UI.Core.Models.Purpose", "Purpose")
                         .WithMany("Hardware")
-                        .HasForeignKey("PurposeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PurposeId");
                 });
 
             modelBuilder.Entity("Fuzion.UI.Core.Models.Model", b =>

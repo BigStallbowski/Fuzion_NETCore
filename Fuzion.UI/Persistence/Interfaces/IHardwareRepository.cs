@@ -13,7 +13,7 @@ namespace Fuzion.UI.Persistence.Interfaces
 
         Task<HardwareCounts> GetHardwareCounts();
 
-        Task CreateHardware(Hardware hardware);
+        Task<Hardware> CreateHardware(Hardware hardware);
 
         Task UpdateHardware(Hardware hardware);
 

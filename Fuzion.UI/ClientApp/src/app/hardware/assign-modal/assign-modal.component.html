@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Assignment Details</h4>
+  <button type="button" class="close" aria-label="Close"
+   (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<form (ngSubmit)="assign()" #assignmentForm="ngForm" class="form" novalidate>
+  <div class="modal-body">
+    <div class="form-body">
+      <div class="form-group">
+        <purposes [(inputModel)]="inputModel.purposeId" (outputModel)="onPurposeChange($event)"></purposes>
+      </div>
+      <div class="form-group">
+        <label>Assigned To</label>
+        <input type="text" class="form-control" [(ngModel)]="inputModel.assignedTo" #assignedTo="ngModel" name="assignedTo" name="assignedTo" required>
+        <small class="form-text text-muted danger" [hidden]="assignedTo.untouched || assignedTo.valid">Assignment Is Required</small>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-raised btn-warning mr-1" (click)="activeModal.dismiss()">
+      <i class="icon-ban"></i> Cancel
+    </button>
+    <button class="btn btn-raised btn-primary mr-1" [disabled]="!assignmentForm.valid">
+      <i class="icon-lock-open"></i> Assign
+    </button>
+  </div>
+</form>

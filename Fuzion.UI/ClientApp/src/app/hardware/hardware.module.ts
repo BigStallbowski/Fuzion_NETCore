@@ -7,7 +7,8 @@ import { HardwareRoutingModule } from './hardware-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
-import { AssignHardwareComponent } from './assign-hardware/assign-hardware.component';
+import { AssignModalComponent } from './assign-modal/assign-modal.component';
+import { HardwareComponent } from './hardware.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,11 @@ import { AssignHardwareComponent } from './assign-hardware/assign-hardware.compo
         SharedModule
     ],
     declarations: [
-        AssignHardwareComponent
+        HardwareComponent,
+        AssignModalComponent
+    ], 
+    entryComponents: [
+        AssignModalComponent
     ]
 })
 

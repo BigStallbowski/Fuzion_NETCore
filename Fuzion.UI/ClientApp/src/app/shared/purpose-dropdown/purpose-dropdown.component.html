@@ -6,6 +6,7 @@
   #purpose="ngModel"
   name="purposeId"
   class="form-control"
+  (change)="onPurposeChange($event)"
   required>
 </ng-select>
-<small class="form-text text-muted danger" [hidden]="purpose.valid">Purpose Is Required</small>
+<small class="form-text text-muted danger" [hidden]="purpose.untouched || purpose.valid">Purpose Is Required</small>

@@ -6,7 +6,6 @@ import { map, catchError } from 'rxjs/operators';
 
 import { IHardware, IHardwareCounts, IHardwareResponse, IList, IHardwareAdditionalInfo, IHardwareAdditionalInfoResponse } from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
-import { HardwareModule } from '../hardware/hardware.module';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class DataService {
       .pipe(
         map((data) => {
           console.log('assignHardware status: ' + data.status);
-          return data.hardware
+          return data.model
         }),
         catchError(this.handleError)
       );
@@ -132,6 +131,18 @@ export class DataService {
       );
   }
 
+  insertHardware(hardware: IHardware): Observable<IHardware> {
+    return this.http.post<IHardwareResponse>(this.baseUrl + 'hardware', hardware)
+      .pipe(
+        map(data => {
+          console.log('insertHardware: ' + data.status);
+          console.log('data: ' + data.model);
+          return data.model;
+        }),
+        catchError(this.handleError)
+      )
+  }
+
   insertNote(note: IHardwareAdditionalInfo): Observable<IHardwareAdditionalInfo> {
     return this.http.post<IHardwareAdditionalInfoResponse>(this.baseUrl + 'notes', note)
       .pipe(
@@ -148,7 +159,7 @@ export class DataService {
       .pipe(
         map((data) => {
           console.log('unassignHardware status: ' + data.status);
-          return data.hardware
+          return data.model
         }),
         catchError(this.handleError)
       );

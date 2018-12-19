@@ -59,10 +59,11 @@ namespace Fuzion.UI.Persistence.Repositories
             return hardwareCounts;
         }
 
-        public async Task CreateHardware(Hardware hardware)
+        public async Task<Hardware> CreateHardware(Hardware hardware)
         {
             Create(hardware);
             await SaveAsync();
+            return hardware;
         }
 
         public async Task UpdateHardware(Hardware hardware)

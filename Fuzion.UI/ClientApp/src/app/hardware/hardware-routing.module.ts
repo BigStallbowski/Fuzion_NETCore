@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AssignHardwareComponent } from './assign-hardware/assign-hardware.component';
+import { HardwareComponent } from './hardware.component';
 
 const routes: Routes = [
     {
         path: '',
         children: [
             {
-                path: 'assign',
-                component: AssignHardwareComponent,
+                path: '',
+                component: HardwareComponent,
                 data: {
                     title: 'Assign Hardware'
                 }
             },
             {
-                path: 'assign/:id',
-                component: AssignHardwareComponent
+                path: ':id',
+                component: HardwareComponent
+            },
+            {
+                path: '/add',
+                component: HardwareComponent
             }
         ]
     }

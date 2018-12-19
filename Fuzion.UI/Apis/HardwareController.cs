@@ -45,11 +45,10 @@ namespace Fuzion.UI.Apis
         }
 
         [HttpPost]
-        [ModelValidation]
         public async Task<ActionResult> CreateHardware([FromBody] Hardware hardware)
         {
-            await _uow.Hardware.CreateHardware(hardware);
-            return CreatedAtRoute("GetHardwareById", new { id = hardware.Id }, hardware);
+            var newHardware = await _uow.Hardware.CreateHardware(hardware);
+            return Ok(new ApiResponse<Hardware> { Status = true, Model = newHardware });
         }
 
         [HttpPut("{id}")]
