@@ -10,9 +10,6 @@ const routes: Routes = [
             {
                 path: '',
                 component: HardwareComponent,
-                data: {
-                    title: 'Assign Hardware'
-                }
             },
             {
                 path: ':id',

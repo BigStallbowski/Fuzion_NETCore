@@ -8,5 +8,9 @@ export const Full_ROUTES: Routes = [
   {
     path: 'hardware',
     loadChildren: './hardware/hardware.module#HardwareModule'
+  },
+  {
+    path: 'administration',
+    loadChildren: './administration/administration.module#AdministrationModule'
   }
 ];
