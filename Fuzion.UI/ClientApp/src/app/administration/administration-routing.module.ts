@@ -9,40 +9,40 @@ import { PurposeComponent } from './elements/purpose/purpose.component';
 import { SettingsComponent } from './elements/settings/settings.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        children: [
-            {
-                path: 'hardwaretypes',
-                component: HardwareTypeComponent,
-            },
-            {
-                path: 'manufacturers',
-                component: ManufacturerComponent
-            },
-            {
-                path: 'models',
-                component: ModelComponent
-            },
-            {
-                path: 'operatingsystems',
-                component: OperatingsystemComponent
-            },
-            {
-                path: 'purposes',
-                component: PurposeComponent
-            },
-            {
-                path: 'settings',
-                component: SettingsComponent
-            }
-        ]
-    }
+  {
+    path: '',
+    children: [
+      {
+        path: 'hardwaretypes',
+        component: HardwareTypeComponent,
+      },
+      {
+        path: 'manufacturers',
+        component: ManufacturerComponent
+      },
+      {
+        path: 'models',
+        component: ModelComponent
+      },
+      {
+        path: 'operatingsystems',
+        component: OperatingsystemComponent
+      },
+      {
+        path: 'purposes',
+        component: PurposeComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 
 export class AdministrationRoutingModule { }

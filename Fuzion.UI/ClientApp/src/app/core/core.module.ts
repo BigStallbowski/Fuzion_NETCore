@@ -11,7 +11,7 @@ import { EnsureModuleLoadedOnceGuard } from '../shared/ensureModuleLoadedOnceGua
   ]
 })
 
-export class CoreModule extends EnsureModuleLoadedOnceGuard{
+export class CoreModule extends EnsureModuleLoadedOnceGuard {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     super(parentModule);
   }

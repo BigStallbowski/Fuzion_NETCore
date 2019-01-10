@@ -5,36 +5,34 @@ import { ToastrService } from '../../core/toastr.service';
 import { IHardwareAdditionalInfo } from '../../shared/interfaces/interfaces';
 
 @Component({
-    selector: 'assignment-history',
-    templateUrl: './assignment-history.component.html'
+  selector: 'assignment-history',
+  templateUrl: './assignment-history.component.html'
 })
 
 export class AssignmentHistoryComponent implements OnInit {
-    @Input() hardwareId: number;
-    
-    assignmentHistoryList: IHardwareAdditionalInfo[] = [];
-    
-    assignmentHistory: IHardwareAdditionalInfo = {
-        body: '',
-        createdBy: '',
-        createdOn: null
-    }
+  @Input() hardwareId: number;
 
-    constructor(private dataService: DataService, private toastr: ToastrService) { }
+  assignmentHistoryList: IHardwareAdditionalInfo[] = [];
 
-    ngOnInit()
-    {
-        this.getHardwareAssignmentHistory(this.hardwareId);
-    }
+  assignmentHistory: IHardwareAdditionalInfo = {
+    body: '',
+    createdBy: '',
+    createdOn: null
+  }
 
-    ngOnChanges(changes: SimpleChanges)
-    {
-        this.getHardwareAssignmentHistory(changes.hardwareId.currentValue)
-    }
+  constructor(private dataService: DataService, private toastr: ToastrService) { }
 
-    getHardwareAssignmentHistory(id: number) {
-        this.dataService.getHardwareAssignmentHistory(id)
-            .subscribe((assignmentHistory: IHardwareAdditionalInfo[]) =>
-            this.assignmentHistoryList = assignmentHistory);
-    }
+  ngOnInit() {
+    this.getHardwareAssignmentHistory(this.hardwareId);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.getHardwareAssignmentHistory(changes.hardwareId.currentValue)
+  }
+
+  getHardwareAssignmentHistory(id: number) {
+    this.dataService.getHardwareAssignmentHistory(id)
+      .subscribe((assignmentHistory: IHardwareAdditionalInfo[]) =>
+        this.assignmentHistoryList = assignmentHistory);
+  }
 }

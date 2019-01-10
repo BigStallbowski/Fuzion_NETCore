@@ -1,28 +1,26 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 var fireRefreshEventOnWindow = function () {
-    var evt = document.createEvent("HTMLEvents");
-    evt.initEvent('resize', true, false);
-    window.dispatchEvent(evt);
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent('resize', true, false);
+  window.dispatchEvent(evt);
 };
 
 @Component({
-    selector: 'app-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: []
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: []
 })
 
 export class LayoutComponent implements OnInit {
-    constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) { }
 
-    ngOnInit() {
-        //sidebar toggle event listner
-        this.elementRef.nativeElement.querySelector('#sidebarToggle')
-            .addEventListener('click', this.onClick.bind(this));
-    }
+  ngOnInit() {
+    this.elementRef.nativeElement.querySelector('#sidebarToggle')
+      .addEventListener('click', this.onClick.bind(this));
+  }
 
-    onClick(event) {
-        //initialize window resizer event on sidebar toggle click event
-        setTimeout(() => { fireRefreshEventOnWindow() }, 300);
-    }
+  onClick(event) {
+    setTimeout(() => { fireRefreshEventOnWindow() }, 300);
+  }
 } 

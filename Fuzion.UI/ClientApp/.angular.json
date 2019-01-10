@@ -23,7 +23,10 @@
             "styles": [
               "src/styles.css",
               "src/assets/sass/app.scss",
-              "node_modules/ng-snotify/styles/material.css"
+              "node_modules/ng-snotify/styles/material.css",
+              "node_modules/@swimlane/ngx-datatable/release/index.css",
+              "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+              "node_modules/@progress/kendo-theme-bootstrap/dist/all.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -83,7 +86,10 @@
             "styles": [
               "src/styles.css",
               "src/assets/sass/app.scss",
-              "node_modules/ng-snotify/styles/material.css"
+              "node_modules/ng-snotify/styles/material.css",
+              "node_modules/@swimlane/ngx-datatable/release/index.css",
+              "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+              "node_modules/@progress/kendo-theme-bootstrap/dist/all.css"
             ],
             "assets": [
               "src/assets",

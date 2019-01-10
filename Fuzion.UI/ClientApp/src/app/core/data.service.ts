@@ -4,7 +4,15 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { IHardware, IHardwareCounts, IHardwareResponse, IList, IHardwareAdditionalInfo, IHardwareAdditionalInfoResponse } from '../shared/interfaces/interfaces';
+import {
+  IHardware,
+  IHardwareCounts,
+  IHardwareResponse,
+  IGeneric,
+  IGenericResponse,
+  IHardwareAdditionalInfo,
+  IHardwareAdditionalInfoResponse
+} from '../shared/interfaces/interfaces';
 import { environment } from '../../environments/environment.prod';
 
 @Injectable({
@@ -15,19 +23,25 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  assignHardware(hardware: IHardware) : Observable<IHardware> {
+  assignHardware(hardware: IHardware): Observable<IHardware> {
     return this.http.put<IHardwareResponse>(this.baseUrl + 'hardware/' + hardware.id + '/assign', hardware)
       .pipe(
         map((data) => {
-          console.log('assignHardware status: ' + data.status);
           return data.model
         }),
         catchError(this.handleError)
       );
   }
 
-  deleteNote(id: number) : Observable<boolean> {
-    return this.http.delete<boolean>(this.baseUrl + 'notes/' + id)
+  deleteHardwareType(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + `hardwaretypes/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteNote(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.baseUrl + `notes/${id}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -36,10 +50,10 @@ export class DataService {
   getHardwareCounts(): Observable<IHardwareCounts> {
     return this.http.get<IHardwareCounts>(this.baseUrl + 'hardware/hardwarecounts')
       .pipe(
-      map(counts => {
-        this.calculateHardwareCountsPercentages(counts);
-        return counts;
-      }),
+        map(counts => {
+          this.calculateHardwareCountsPercentages(counts);
+          return counts;
+        }),
         catchError(this.handleError)
       );
   }
@@ -61,8 +75,8 @@ export class DataService {
       );
   }
 
-  getHardwareTypeList(): Observable<IList[]> {
-    return this.http.get<IList[]>(this.baseUrl + 'hardwaretypes')
+  getHardwareTypeList(): Observable<IGeneric[]> {
+    return this.http.get<IGeneric[]>(this.baseUrl + 'hardwaretypes')
       .pipe(
         map(hardwareTypeList => {
           return hardwareTypeList;
@@ -71,8 +85,8 @@ export class DataService {
       );
   }
 
-  getManufacturerList(): Observable<IList[]> {
-    return this.http.get<IList[]>(this.baseUrl + 'manufacturers')
+  getManufacturerList(): Observable<IGeneric[]> {
+    return this.http.get<IGeneric[]>(this.baseUrl + 'manufacturers')
       .pipe(
         map(manufacturerList => {
           return manufacturerList;
@@ -81,8 +95,8 @@ export class DataService {
       );
   }
 
-  getModelList(): Observable<IList[]> {
-    return this.http.get<IList[]>(this.baseUrl + 'models')
+  getModelList(): Observable<IGeneric[]> {
+    return this.http.get<IGeneric[]>(this.baseUrl + 'models')
       .pipe(
         map(modelList => {
           return modelList;
@@ -111,8 +125,8 @@ export class DataService {
       );
   }
 
-  getOperatingSystemList(): Observable<IList[]> {
-    return this.http.get<IList[]>(this.baseUrl + 'operatingsystems')
+  getOperatingSystemList(): Observable<IGeneric[]> {
+    return this.http.get<IGeneric[]>(this.baseUrl + 'operatingsystems')
       .pipe(
         map(operatingSystemList => {
           return operatingSystemList;
@@ -121,8 +135,8 @@ export class DataService {
       );
   }
 
-  getPurposeList(): Observable<IList[]> {
-    return this.http.get<IList[]>(this.baseUrl + 'purposes')
+  getPurposeList(): Observable<IGeneric[]> {
+    return this.http.get<IGeneric[]>(this.baseUrl + 'purposes')
       .pipe(
         map(operatingSystemList => {
           return operatingSystemList;
@@ -135,8 +149,26 @@ export class DataService {
     return this.http.post<IHardwareResponse>(this.baseUrl + 'hardware', hardware)
       .pipe(
         map(data => {
-          console.log('insertHardware: ' + data.status);
-          console.log('data: ' + data.model);
+          return data.model;
+        }),
+        catchError(this.handleError)
+      )
+  }
+
+  updateHardwareType(hardwareType: IGeneric): Observable<IGeneric> {
+    return this.http.put<IGenericResponse>(this.baseUrl + `hardwaretypes/${hardwareType.id}`, hardwareType)
+      .pipe(
+        map(data => {
+          return data.model;
+        }),
+        catchError(this.handleError)
+      )
+  }
+
+  insertHardwareType(hardwareType: IGeneric): Observable<IGeneric> {
+    return this.http.post<IGenericResponse>(this.baseUrl + "hardwaretypes", hardwareType)
+      .pipe(
+        map(data => {
           return data.model;
         }),
         catchError(this.handleError)
@@ -147,35 +179,30 @@ export class DataService {
     return this.http.post<IHardwareAdditionalInfoResponse>(this.baseUrl + 'notes', note)
       .pipe(
         map(data => {
-          console.log('insertNote Status: ' + data.status);
           return data.object;
         }),
         catchError(this.handleError)
       );
   }
 
-  unassignHardware(hardware: IHardware) : Observable<IHardware> {
+  unassignHardware(hardware: IHardware): Observable<IHardware> {
     return this.http.put<IHardwareResponse>(this.baseUrl + 'hardware/' + hardware.id + '/unassign', hardware)
       .pipe(
         map((data) => {
-          console.log('unassignHardware status: ' + data.status);
           return data.model
         }),
         catchError(this.handleError)
       );
   }
 
-  calculateHardwareCountsPercentages(hardwareCounts: IHardwareCounts)
-  {
-    if (hardwareCounts.totalAvailableHardware != 0 && hardwareCounts.totalDeployedHardware != 0)
-    {
+  calculateHardwareCountsPercentages(hardwareCounts: IHardwareCounts) {
+    if (hardwareCounts.totalAvailableHardware != 0 && hardwareCounts.totalDeployedHardware != 0) {
       let percentage = 0;
       percentage = hardwareCounts.totalDeployedHardware / hardwareCounts.totalAvailableHardware;
       hardwareCounts.totalDeployedHardwarePercentage = percentage;
     }
 
-    if (hardwareCounts.totalAvailableWorkstations != 0 && hardwareCounts.totalAvailableWorkstations != 0)
-    {
+    if (hardwareCounts.totalAvailableWorkstations != 0 && hardwareCounts.totalAvailableWorkstations != 0) {
       let percentage = 0;
       percentage = hardwareCounts.totalDeployedWorkstations / hardwareCounts.totalAvailableWorkstations;
       hardwareCounts.totalDeployedHardwarePercentage = percentage;

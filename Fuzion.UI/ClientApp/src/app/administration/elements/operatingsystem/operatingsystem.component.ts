@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./operatingsystem.component.scss']
 })
 export class OperatingsystemComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
   }
-
 }

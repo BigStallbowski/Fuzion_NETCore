@@ -1,38 +1,38 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { DataService } from '../../core/data.service';
-import { IList, IHardware } from '../interfaces/interfaces';
+import { IGeneric, IHardware } from '../interfaces/interfaces';
 
 @Component({
-    selector: 'manufacturers',
-    templateUrl: './manufacturer-dropdown.component.html',
-    styles: [
-        `
+  selector: 'manufacturers',
+  templateUrl: './manufacturer-dropdown.component.html',
+  styles: [
+    `
         .form-control.ng-select {
             padding: 0;
             border: none;
           }
         `
-    ]
+  ]
 })
 
 export class ManufacturerDropdownComponent implements OnInit {
-    @Input() inputModel: IHardware;
-    @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
+  @Input() inputModel: IHardware;
+  @Output() outputModel: EventEmitter<number> = new EventEmitter<number>();
 
-    manufacturerList: IList[];
+  manufacturerList: IGeneric[];
 
-    constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
-    ngOnInit() {
-        this.getManufacturerList();
-    }
+  ngOnInit() {
+    this.getManufacturerList();
+  }
 
-    onManufacturerChange($event) {
-        this.outputModel.emit($event.id);
-    }
+  onManufacturerChange($event) {
+    this.outputModel.emit($event.id);
+  }
 
-    getManufacturerList() {
-        this.dataService.getManufacturerList().subscribe((manufacturers: IList[]) => this.manufacturerList = manufacturers);
-    }
+  getManufacturerList() {
+    this.dataService.getManufacturerList().subscribe((manufacturers: IGeneric[]) => this.manufacturerList = manufacturers);
+  }
 }

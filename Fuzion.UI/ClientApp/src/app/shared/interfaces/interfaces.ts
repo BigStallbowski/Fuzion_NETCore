@@ -39,9 +39,14 @@ export interface IHardwareResponse {
   model: IHardware;
 }
 
-export interface IList {
+export interface IGeneric {
   id?: number;
   name: string;
+}
+
+export interface IGenericResponse {
+  status: boolean;
+  model: IGeneric;
 }
 
 export interface IHardwareAdditionalInfo {

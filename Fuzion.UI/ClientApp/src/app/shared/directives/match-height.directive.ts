@@ -15,34 +15,34 @@ export class MatchHeightDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-      setTimeout(() => { this.matchHeights(this.el.nativeElement, this.matchHeight )}, 300);
+    setTimeout(() => { this.matchHeights(this.el.nativeElement, this.matchHeight) }, 300);
   }
 
   matchHeights(parent: HTMLElement, className: string) {
-      if (!parent) return;
+    if (!parent) return;
 
-      const children = parent.getElementsByClassName(className);
+    const children = parent.getElementsByClassName(className);
 
-      if (!children) return;
+    if (!children) return;
 
-      Array.from(children).forEach((x: HTMLElement) => {
-          x.style.height = 'initial';
-      });
+    Array.from(children).forEach((x: HTMLElement) => {
+      x.style.height = 'initial';
+    });
 
-      const itemHeights = Array.from(children)
-          .map(x => x.getBoundingClientRect().height);
+    const itemHeights = Array.from(children)
+      .map(x => x.getBoundingClientRect().height);
 
-      const maxHeight = itemHeights.reduce((prev, curr) => {
-          return curr > prev ? curr : prev;
-      }, 0);
+    const maxHeight = itemHeights.reduce((prev, curr) => {
+      return curr > prev ? curr : prev;
+    }, 0);
 
-      Array.from(children)
-          .forEach((x: HTMLElement) => x.style.height = `${maxHeight}px`);
+    Array.from(children)
+      .forEach((x: HTMLElement) => x.style.height = `${maxHeight}px`);
   }
 
   @HostListener('window:resize')
   onResize() {
-      this.matchHeights(this.el.nativeElement, this.matchHeight );
+    this.matchHeights(this.el.nativeElement, this.matchHeight);
   }
 }
 

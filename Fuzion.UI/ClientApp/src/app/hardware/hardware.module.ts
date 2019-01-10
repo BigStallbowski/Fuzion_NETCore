@@ -11,22 +11,22 @@ import { AssignModalComponent } from './assign-modal/assign-modal.component';
 import { HardwareComponent } from './hardware.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HardwareRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule,
-        NgSelectModule,
-        SharedModule
-    ],
-    declarations: [
-        HardwareComponent,
-        AssignModalComponent
-    ], 
-    entryComponents: [
-        AssignModalComponent
-    ]
+  imports: [
+    CommonModule,
+    HardwareRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    NgSelectModule,
+    SharedModule
+  ],
+  declarations: [
+    HardwareComponent,
+    AssignModalComponent
+  ],
+  entryComponents: [
+    AssignModalComponent
+  ]
 })
 
 export class HardwareModule {

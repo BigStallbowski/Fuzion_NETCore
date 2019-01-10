@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  { path: '', component: LayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES},
+  { path: '', component: LayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES },
 ];
 
 @NgModule({

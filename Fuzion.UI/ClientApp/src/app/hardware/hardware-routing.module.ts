@@ -4,28 +4,28 @@ import { Routes, RouterModule } from '@angular/router';
 import { HardwareComponent } from './hardware.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    children: [
+      {
         path: '',
-        children: [
-            {
-                path: '',
-                component: HardwareComponent,
-            },
-            {
-                path: ':id',
-                component: HardwareComponent
-            },
-            {
-                path: '/add',
-                component: HardwareComponent
-            }
-        ]
-    }
+        component: HardwareComponent,
+      },
+      {
+        path: ':id',
+        component: HardwareComponent
+      },
+      {
+        path: '/add',
+        component: HardwareComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 
 export class HardwareRoutingModule { }

@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((counts: IHardwareCounts) => {
         this.hardwareCounts = counts;
       },
-      (err: any) => console.log(err),
-      () => console.log('getHardwareCounts() retrieved counts'));
+        (err: any) => console.log(err),
+        () => console.log('getHardwareCounts() retrieved counts'));
   }
 }

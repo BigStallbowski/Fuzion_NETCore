@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                   <operating-systems [(inputModel)]="hardware.osId" (outputModel)="onOperatingSystemChange($event)"></operating-systems>
-                </div> 
+                </div>
               </div>
               <div *ngIf="hardware.isAssigned == 1" class="user-info" [@fadeInOut]>
                 <div class="form-group">
@@ -133,5 +133,3 @@
     </div>
   </div>
 </div>
-
-

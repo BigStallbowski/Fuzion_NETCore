@@ -8,15 +8,15 @@ import { MatchHeightModule } from '../shared/directives/match-height.directive';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        ChartistModule,
-        NgbModule,
-        MatchHeightModule
-    ],
-    declarations: [
-        DashboardComponent,
-   ]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    ChartistModule,
+    NgbModule,
+    MatchHeightModule
+  ],
+  declarations: [
+    DashboardComponent,
+  ]
 })
 export class DashboardModule { }
