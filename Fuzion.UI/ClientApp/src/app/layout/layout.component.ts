@@ -23,4 +23,4 @@ export class LayoutComponent implements OnInit {
   onClick(event) {
     setTimeout(() => { fireRefreshEventOnWindow() }, 300);
   }
-} 
+}

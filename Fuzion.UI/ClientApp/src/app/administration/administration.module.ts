@@ -12,6 +12,7 @@ import { ModelComponent } from './elements/model/model.component';
 import { OperatingsystemComponent } from './elements/operatingsystem/operatingsystem.component';
 import { PurposeComponent } from './elements/purpose/purpose.component';
 import { SettingsComponent } from './elements/settings/settings.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { SettingsComponent } from './elements/settings/settings.component';
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     HardwareTypeComponent,

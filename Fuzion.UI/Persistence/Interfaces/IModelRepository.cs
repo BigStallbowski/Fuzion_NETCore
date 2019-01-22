@@ -10,8 +10,6 @@ namespace Fuzion.UI.Persistence.Interfaces
 
         Task<Model> GetModelByIdAsync(int id);
 
-        Task<IEnumerable<Model>> GetModelsByManufacturerId(int id);
-
         Task CreateModelAsync(Model model);
 
         Task UpdateModelAsync(Model model);

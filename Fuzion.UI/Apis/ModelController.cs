@@ -3,7 +3,6 @@ using Fuzion.UI.Persistence.Extensions;
 using Fuzion.UI.Persistence.Filters;
 using Fuzion.UI.Persistence.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fuzion.UI.Apis
@@ -36,19 +35,6 @@ namespace Fuzion.UI.Apis
             }
 
             return Ok(model);
-        }
-
-        [HttpGet("{id}-manufacturer", Name = "GetModelsByManufacturerId")]
-        public async Task<ActionResult> ModelsByManufacturerId(int id)
-        {
-            var models = await _uow.Models.GetModelsByManufacturerId(id);
-
-            if (models.Count().Equals(0))
-            {
-                return NotFound();
-            }
-
-            return Ok(models);
         }
 
         [HttpPost]

@@ -6,9 +6,6 @@ namespace Fuzion.UI.Core.Models
     {
         public string Name { get; set; }
 
-        public int ManufacturerId { get; set; }
-        public Manufacturer Manufacturer { get; set; }
-
         public List<Hardware> Hardware { get; set; }
     }
 }

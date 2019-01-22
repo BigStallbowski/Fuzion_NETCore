@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -16,12 +17,14 @@ import { NotesComponent } from './notes/notes.component';
 import { NotesTimelineComponent } from './notes/notes-timeline/notes-timeline.component';
 import { OperatingSystemDropdownComponent } from './operating-system-dropdown/operating-system-dropdown.component';
 import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.component';
+import { GenericGridComponent } from './generic-grid/generic-grid.component';
 
 @NgModule({
   exports: [
     NavbarComponent,
     SidebarComponent,
     AssignmentHistoryComponent,
+    GenericGridComponent,
     HardwareTypeDropdownComponent,
     ManufacturerDropdownComponent,
     ModelDropdownComponent,
@@ -35,6 +38,7 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
     CommonModule,
     NgbModule,
     NgSelectModule,
+    NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -48,7 +52,8 @@ import { PurposeDropdownComponent } from './purpose-dropdown/purpose-dropdown.co
     NotesComponent,
     NotesTimelineComponent,
     OperatingSystemDropdownComponent,
-    PurposeDropdownComponent
+    PurposeDropdownComponent,
+    GenericGridComponent
   ]
 })
 

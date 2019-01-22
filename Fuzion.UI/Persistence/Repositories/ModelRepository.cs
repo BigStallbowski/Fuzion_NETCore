@@ -25,12 +25,6 @@ namespace Fuzion.UI.Persistence.Repositories
             return model.FirstOrDefault();
         }
 
-        public async Task<IEnumerable<Model>> GetModelsByManufacturerId(int id)
-        {
-            var models = await FindByConditionAsync(x => x.Manufacturer.Id.Equals(id));
-            return models.OrderBy(x => x.Name);
-        }
-
         public async Task CreateModelAsync(Model model)
         {
             Create(model);

@@ -9,48 +9,7 @@
       <div class="card">
         <div class="card-body">
           <div class="card-block">
-            <div class="row justify-content-between">
-              <div class="col-4">
-                <form (ngSubmit)="addHardwareType()" #addHardwareTypeForm="ngForm" novalidate>
-                  <div class="input-group">
-                    <input type="text" [(ngModel)]="hardwareType.name" name="name" #name="ngModel" class="form-control" style="width:20%;" placeholder="Add A Device Type" required>
-                    <div class="input-group-append">
-                      <button class="btn btn-raised btn-info" [disabled]="!addHardwareTypeForm.valid">
-                        <i class="ft-save"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="col-4">
-                <input type='text' class="form-control" placeholder='Search...' (keyup)='updateFilter($event)' />
-              </div>
-            </div>
-            <ngx-datatable class="bootstrap" [headerHeight]="50" [limit]="25" [columnMode]="'force'" [footerHeight]="50"
-                           [rowHeight]="'auto'" [rows]="rowData">
-              <ngx-datatable-column name="Id">
-                <ng-template let-rowIndex="rowIndex" let-row="row">
-                  {{row.id}}
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column name="Name">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                  <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
-                    {{row.name}}
-                  </span>
-                  <input autofocus (blur)="updateValue($event, 'name', rowIndex, row)" *ngIf="editing[rowIndex + '-name']" type="text" [value]="value" />
-                </ng-template>
-              </ngx-datatable-column>
-              <ngx-datatable-column>
-                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-                  <div class="form-actions">
-                    <button class="btn btn-sm btn-raised btn-danger mr-1" placement="right" ngbTooltip="Delete Device Type" (click)="deleteDeviceType(row)">
-                      <i class="icon-trash"></i>
-                    </button>
-                  </div>
-                </ng-template>
-              </ngx-datatable-column>
-            </ngx-datatable>
+            <generic-grid genericType="hardwareTypes"></generic-grid>
           </div>
         </div>
       </div>
